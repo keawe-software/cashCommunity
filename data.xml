@@ -1,0 +1,21 @@
+<xml>
+  <rooms>
+    <room id="1" name="Zimmer 1" size="11.5"/>
+    <room id="2" name="Zimmer 2" size="15"/>
+    <room id="3" name="Zimmer 3" size="14"/>
+    <room id="4" name="Zimmer 4" size="20"/>
+    <room id="5" name="Zimmer 5" size="22"/>
+    <room id="6" name="Bad" size="10"/>
+    <room id="7" name="Flur" size="17"/>
+    <room id="8" name="Küche" size="11"/>
+  </rooms>
+  <flatmates>
+    <flatmate id="1" name="Stephan Richter" start="2004-10-01" room="3">
+    <flatmate id="2" name="Sebastian Hanke" start="2012-10-08" room="1">
+    ...
+  </flatmates>
+  <bills>
+    <bill id="1" category="Strom" start="2014-10-01" end="2014-10-31" value="23,40" by_size="false"/>
+    <bill id="1" category="Miete" start="2014-10-01" end="2014-10-31" value="1003" by_size="true"/>
+  </bills>
+</xml>
