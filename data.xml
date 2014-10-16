@@ -9,6 +9,15 @@
     <room id="7" name="Flur" size="17"/>
     <room id="8" name="Küche" size="11"/>
   </rooms>
+  <distributuions>
+    <distribution id="1" start="2004-10-01" end="2014-10-31">
+          <share id="1" val="11.5"/>
+          <share id="2" val="15"/>
+          <share id="3" val="14"/>
+          <share id="4" val="20"/>
+          <share id="5" val="22"/>          
+    </distribution>        
+  </distributuions>
   <flatmates>
     <flatmate id="1" name="Stephan Richter" start="2004-10-01" room="3">
     <flatmate id="2" name="Sebastian Hanke" start="2012-10-08" room="1">
