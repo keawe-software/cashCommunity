@@ -1,6 +1,8 @@
+<form action="." method="post">
 <ul class="menu">
-  <li><a href="new_invoice"><?php print t('new invoice'); ?></a></li>
-  <li><a href="new_flatmate"><?php print t('new flatmate');?></a></li>
-  <li><a href="new_distribution"><?php print t('new distribution')?></a></li>
-  <li><a href="manage_rooms"><?php print t('manage rooms')?></a></li>
+  <li><input type="submit" name="manage_invoices" value="<?php print t('manage_invoices'); ?>"/></li>
+  <li><input type="submit" name="manage_flatmates" value="<?php print t('manage_flatmates'); ?>"/></li>
+  <li><input type="submit" name="manage_distributions" value="<?php print t('manage_distributions'); ?>"/></li>
+  <li><input type="submit" name="manage_rooms" value="<?php print t('manage_rooms'); ?>"/></li>
 </ul>
+</form>

@@ -1,4 +1,6 @@
 <?php
+  include functions.php;
+  
   function t($message){
-  	return $message;
+  	return 't_'.$message;
   }
