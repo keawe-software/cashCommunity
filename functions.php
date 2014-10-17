@@ -2,11 +2,8 @@
   function getData(){
   	global $data;
   	if (!isset($data)){
-  		$parser=xml_parser_create();
-  		$xml=file_get_contents("data.xml");
-  		$data=array();
-  		$result=xml_parse_into_struct($parser, $xml, $data);
-  		if ($result==0){
+  		$data=simplexml_load_file('data.xml');
+  		if ($data===FALSE){
   			print "error";
   			return FALSE;
   		}
@@ -16,6 +13,9 @@
 
   function readFlatmates(){
   	$data=getData();
-  	print_r($data);
-  	die();
+  	$flatmates=array();
+  	foreach ($data->flatmates->flatmate as $flatmate){
+  		$flatmates[]=$flatmate;
+  	}
+  	return $flatmates;
   }
