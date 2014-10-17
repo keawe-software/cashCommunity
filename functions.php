@@ -19,3 +19,8 @@
   	}
   	return $flatmates;
   }
+  
+  function editFlatmate($flatmate){
+  	$mates=readFlatmates();
+  	return $mates;
+  }
