@@ -1,5 +1,5 @@
 <?php
-  function getData(){
+  function getData(){ // TODO: dies is nun typ-spezifisch und muss nochmal angepasst werden!
   	global $data;
   	if (!isset($data)){
   		$data=simplexml_load_file('flatmates.xml');

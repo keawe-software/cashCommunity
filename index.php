@@ -6,6 +6,9 @@ include 'templates/head.php';
 if (isset($_POST['flatmate'])){
 	$flatmates=editFlatmate($_POST['flatmate']);
 	include 'templates/flatmate_man.php';
+} else if (isset($_POST['newflatmate'])){
+	$flatmates=addFlatmate($_POST['newflatmate']);
+	include 'templates/flatmate_man.php';
 } else if (isset($_POST['manage_invoices'])){
 	include 'templates/invoice_man';
 } else if (isset($_POST['manage_flatmates'])){
