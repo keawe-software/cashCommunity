@@ -6,7 +6,7 @@ include 'templates/head.php';
 if (isset($_POST['manage_invoices'])){
 	include 'templates/invoice_man';
 } else if (isset($_POST['manage_flatmates'])){
-	
+	$flatmates=readFlatmates();
 	include 'templates/flatmate_man';
 } else if (isset($_POST['manage_distributions'])){
 	include 'templates/distribution_man';

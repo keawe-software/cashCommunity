@@ -19,9 +19,8 @@
     </distribution>        
   </distributuions>
   <flatmates>
-    <flatmate id="1" name="Stephan Richter" start="2004-10-01" room="3">
-    <flatmate id="2" name="Sebastian Hanke" start="2012-10-08" room="1">
-    ...
+    <flatmate id="1" name="Stephan Richter" start="2004-10-01" room="3"/>
+    <flatmate id="2" name="Sebastian Hanke" start="2012-10-08" room="1"/>
   </flatmates>
   <bills>
     <bill id="1" category="Strom" start="2014-10-01" end="2014-10-31" value="23,40" by_size="false"/>
