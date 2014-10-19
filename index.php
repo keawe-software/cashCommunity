@@ -19,6 +19,9 @@ if (isset($_POST['flatmate'])){
 } else if (isset($_POST['room'])){
   $data=editRoom($_POST['room']);
   include 'templates/room_man.php';
+} else if (isset($_POST['newroom'])){
+  $data=addRoom($_POST['newroom']);
+  include 'templates/room_man.php';
 } else if (isset($_POST['manage_rooms'])){
   $data=getData();
 	include 'templates/room_man.php';

@@ -39,3 +39,12 @@
   	saveData($data);
   	return $data;
   }
+
+  function addRoom($room){
+    $data=getData();
+    $num=count($data['rooms']);;
+    $room['id']=$num;
+    $data['rooms'][]=$room;
+    saveData($data);
+    return $data;
+  }
