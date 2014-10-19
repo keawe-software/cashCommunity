@@ -2,7 +2,7 @@
   function getData(){ // TODO: dies is nun typ-spezifisch und muss nochmal angepasst werden!
   	global $data;
   	if (!isset($data)){
-  		$data=simplexml_load_file('flatmates.xml');
+  		$data=json_decode(file_get_contents('data.json'),true);
   		if ($data===FALSE){
   			print "error";
   			return FALSE;
@@ -13,11 +13,7 @@
 
   function readFlatmates(){
   	$data=getData();
-  	$flatmates=array();
-  	foreach ($data->flatmate as $flatmate){
-  		$flatmates[]=$flatmate;
-  	}
-  	return $flatmates;
+  	return $data['flatmates'];
   }
   
   function saveXML($name,$content){
