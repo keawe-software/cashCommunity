@@ -9,7 +9,7 @@
   </tr>
 <?php
 
-foreach ($flatmates as $flatmate){
+foreach ($data['flatmates'] as $flatmate){
 	?>
 	<form action="." method="POST">
 	<tr>
@@ -30,7 +30,7 @@ foreach ($flatmates as $flatmate){
 	  <td><input type="text" name="newflatmate[name]"/></td>
 		<td><input type="text" name="newflatmate[start]"/></td>
 	  <td><input type="text" name="newflatmate[end]" /></td>
-		<td><input type="text" name="newflatmate[room" /></td>
+		<td><input type="text" name="newflatmate[room]" /></td>
 		<td><input type="submit"/></td>
 	</tr>
 	</form>

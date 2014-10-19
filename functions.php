@@ -21,18 +21,21 @@
     $flatmate['id']=$num;
     $data['flatmates'][]=$flatmate;
     saveData($data);
+    return $data;
   }
   
   function editFlatmate($flatmate){
   	$data=getData();
+    $id=$flatmate['id'];
   	foreach ($data['flatmates'] as $mate){
-  		if ($mate['id']==$flatmate['id']){
+  		if ($mate['id']==$id){
   			foreach ($flatmate as $key => $val){
-  				$data['flatmates'][$key]=$val;
+  				$data['flatmates'][$id][$key]=$val;
   			}
   			break;
   		}
   	}
+    print_r($data);
   	saveData($data);
   	return $data;
   }
