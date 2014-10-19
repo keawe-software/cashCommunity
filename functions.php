@@ -14,9 +14,17 @@
   function saveData($data){
   	file_put_contents('data.json', json_encode($data));
   }
+
+  function addFlatmate($flatmate){
+    $data=getData();
+    $num=count($data['flatmates']);
+    $flatmate['id']=$num;
+    $data['flatmates'][]=$flatmate;
+    saveData($data);
+  }
   
   function editFlatmate($flatmate){
-  	$data=getData()
+  	$data=getData();
   	foreach ($data['flatmates'] as $mate){
   		if ($mate['id']==$flatmate['id']){
   			foreach ($flatmate as $key => $val){
