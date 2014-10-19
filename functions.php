@@ -11,35 +11,20 @@
   	return $data;
   }
 
-  function readFlatmates(){
-  	$data=getData();
-  	return $data['flatmates'];
-  }
-  
-  function saveXML($name,$content){
-  	$data ='<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL;
-  	$data.='<xml>'.PHP_EOL;
-  	foreach ($content as $entry){
-  		$data.='<'.$name;
-  		foreach ($entry->attributes() as $key => $val){
-  			$data.=' '.$key.'="'.$val.'"';
-  		}
-  		$data.='/>'.PHP_EOL;
-  	}
-  	$data.='</xml>'.PHP_EOL;
-  	file_put_contents($name.'s.xml', $data);
+  function saveData($data){
+  	file_put_contents('data.json', json_encode($data));
   }
   
   function editFlatmate($flatmate){
-  	$mates=readFlatmates();
-  	foreach ($mates as $mate){
+  	$data=getData()
+  	foreach ($data['flatmates'] as $mate){
   		if ($mate['id']==$flatmate['id']){
   			foreach ($flatmate as $key => $val){
-  				$mate[$key]=$val;
+  				$data['flatmates'][$key]=$val;
   			}
   			break;
   		}
   	}
-  	saveXML('flatmate',$mates);
-  	return $mates;
+  	saveData($data);
+  	return $data;
   }
