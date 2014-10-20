@@ -2,7 +2,7 @@
   include 'functions.php';
 
   getData();
-  calculateSize();
+  calculate();
   $warnings=array();
   
   function t($message){

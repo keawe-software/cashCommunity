@@ -9,19 +9,35 @@
   	}
   }
 
-  function calculateSize(){
-    global $data, $flat_size;
+  function calculate(){
+    global $data, $flat_size, $base_dist;
     if (!isset($data)){
       $warnings[]=t('no data given for flat size calculation');
-      return;
-    }
-    if (!isset($data['rooms']) || empty($data['rooms'])){
+    } else if (!isset($data['rooms']) || empty($data['rooms'])){
       $warnings[]=t('no rooms given for flat size calculation');
-      return;
-    }
-    $flat_size=0;
-    foreach ($data['rooms'] as $room){
-      $flat_size+=$room['size'];
+    } else {
+      $flat_size=0;
+      foreach ($data['rooms'] as $room){
+        $flat_size+=$room['size'];
+      }
+
+      if (isset($data['flatmates']) && !empty($data['flatmates'])){
+        $base_dist=array();
+        $separate=0;
+        $base_dist=array();
+        $count=0;
+        foreach ($data['flatmates'] as $mate){
+          $room_id=$mate['room'];
+          $room_size=$data['rooms'][$room_id]['size'];
+          $separate+=$room_size;
+          $base_dist[$room_id]=$room_size;
+          $count+=1;
+        }
+        $common=($flat_size-$separate)/$count;
+        foreach ($base_dist as $id => $percentage){
+          $base_dist[$id] = 100*($percentage + $common)/$flat_size;
+        }
+      }
     }
   }
 
