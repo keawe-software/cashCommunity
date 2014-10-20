@@ -8,8 +8,29 @@
     <th><?php print t('Action'); ?></th>
   </tr>
 <?php
-if (isset($data) && isset($data['flatmates'])){
-foreach ($data['flatmates'] as $flatmate){
+
+function roomlist($select=null){
+	global $data;
+	if ($select==null){
+		print '<select name="newflatmate[room]">'.PHP_EOL;
+	} else {
+		print '<select name="flatmate[room]">'.PHP_EOL;
+	}
+	if (isset($data['rooms'])){
+		foreach ($data['rooms'] as $room){
+      if ($select!=null && $room['id']==$select){
+      	print '<option selected vaule="'.$room['id'].'">'.$room['name'].'</option>'.PHP_EOL;
+      } else {
+				print '<option vaule="'.$room['id'].'">'.$room['name'].'</option>'.PHP_EOL;
+      }
+		}
+	}
+	print '</select>'.PHP_EOL;	
+}
+
+if (isset($data)){
+	if (isset($data['flatmates'])){
+		foreach ($data['flatmates'] as $flatmate){
 	?>
 	<form action="." method="POST">
 	<tr>
@@ -17,12 +38,13 @@ foreach ($data['flatmates'] as $flatmate){
 	  <td><input type="text" name="flatmate[name]" value="<?php print $flatmate['name'];?>"/></td>
 		<td><input type="text" name="flatmate[start]" value="<?php print $flatmate['start'];?>"/></td>
 	  <td><input type="text" name="flatmate[end]" value="<?php print $flatmate['end'];?>"/></td>
-		<td><input type="text" name="flatmate[room]" value="<?php print $flatmate['room'];?>"/></td>
+		<td><?php roomlist($flatmate['room']); ?></td>
 		<td><input type="submit"/></td>
 	</tr>
 	</form>
 	<?php 
 } // foreach
+} // if
 } // if
 ?>
 	<form action="." method="POST">
@@ -31,7 +53,7 @@ foreach ($data['flatmates'] as $flatmate){
 	  <td><input type="text" name="newflatmate[name]"/></td>
 		<td><input type="text" name="newflatmate[start]"/></td>
 	  <td><input type="text" name="newflatmate[end]" /></td>
-		<td><input type="text" name="newflatmate[room]" /></td>
+		<td><?php roomlist(); ?></td>
 		<td><input type="submit"/></td>
 	</tr>
 	</form>

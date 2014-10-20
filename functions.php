@@ -11,12 +11,18 @@
   }
 
   function saveData($data){
+  	print_r($_POST);
+  	print_r($data);
   	file_put_contents('data.json', json_encode($data));
   }
 
   function addFlatmate($flatmate){
     $data=getData();
-    $num=count($data['flatmates']);
+    if (isset($data['flatmates'])){
+    	$num=count($data['flatmates']);
+    } else {
+    	$num=0;
+    }
     $flatmate['id']=$num;
     $data['flatmates'][]=$flatmate;
     saveData($data);
