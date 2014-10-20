@@ -9,6 +9,22 @@
   	}
   }
 
+  function calculateSize(){
+    global $data, $flat_size;
+    if (!isset($data)){
+      $warnings[]=t('no data given for flat size calculation');
+      return;
+    }
+    if (!isset($data['rooms']) || empty($data['rooms'])){
+      $warnings[]=t('no rooms given for flat size calculation');
+      return;
+    }
+    $flat_size=0;
+    foreach ($data['rooms'] as $room){
+      $flat_size+=$room['size'];
+    }
+  }
+
   function saveData($data){
   	file_put_contents('data.json', json_encode($data));
   }

@@ -29,7 +29,12 @@ foreach ($data['rooms'] as $room){
 		<td><input type="submit"/></td>
 	</tr>
 	</form>
-
+  <tr>
+    <td>-</td>
+    <td><?php print t('overall flat size'); ?></td>
+    <td><?php print $flat_size; ?></td>
+    <td></td>
+  </tr>
 </table>
 <form action="." method="post">
 <ul class="menu">
