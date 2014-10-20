@@ -33,7 +33,8 @@ if (isset($data)){
 	<tr>
 	  <td><input type="hidden" name="flatmate[id]" value="<?php print $flatmate['id'];?>"/><?php print $flatmate['id'];?></td>
 	  <td><input type="text" name="flatmate[name]" value="<?php print $flatmate['name'];?>"/></td>
-		<td><input type="submit"/></td>
+		<td><button name="edit" value="flatmate" type="submit"><?php print t('submit')?></button>
+		    <button name="edit" value="association" type="submit"><?php print t('room association...')?></button></td>
 	</tr>
 	</form>
 	<?php 
