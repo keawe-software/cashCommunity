@@ -2,7 +2,7 @@
 
 include 'init.php';
 include 'templates/head.php';
-
+include 'templates/overview.php';
 if (isset($_POST['edit'])){
 	$edit=$_POST['edit'];
 	if ($edit=='flatmate'){
@@ -37,9 +37,7 @@ if (isset($_POST['edit'])){
   editDistribution($_POST['distribution']);
   include 'templates/distribution_man.php';
   print_r($data);
-} else {
-	include 'templates/overview.php';	
-}
+} 	
 ?><pre><?php 
 print_r($_POST);
 ?></pre><?php
