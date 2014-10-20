@@ -11,35 +11,7 @@
 
   function calculate(){
     global $data, $flat_size, $base_dist;
-    if (!isset($data)){
-      $warnings[]=t('no data given for flat size calculation');
-    } else if (!isset($data['rooms']) || empty($data['rooms'])){
-      $warnings[]=t('no rooms given for flat size calculation');
-    } else {
-      $flat_size=0;
-      foreach ($data['rooms'] as $room){
-        $flat_size+=$room['size'];
-      }
-
-      if (isset($data['flatmates']) && !empty($data['flatmates'])){
-        $base_dist=array();
-        $separate=0;
-        $base_dist=array();
-        $count=0;
-        foreach ($data['flatmates'] as $mate){
-          $mate_id=$mate['id'];
-          $room_id=$mate['room'];
-          $room_size=$data['rooms'][$room_id]['size'];
-          $separate+=$room_size;
-          $base_dist[$mate_id]=$room_size;
-          $count+=1;
-        }
-        $common=($flat_size-$separate)/$count;
-        foreach ($base_dist as $mate_id => $percentage){
-          $base_dist[$mate_id] = 100*($percentage + $common)/$flat_size;
-        }
-      }
-    }
+    // TODO: implement
   }
 
   function saveData($data){
