@@ -1,3 +1,4 @@
+<?php print str_replace('%name',$_POST['flatmate']['name'],t('editing the assiciations of %name'))?>
 <table>
   <tr>
     <th><?php print t('Id'); ?></th>
@@ -36,3 +37,6 @@ if (isset($data)){
   <li><input type="submit" name="home" value="<?php print t('home');?>"/></li>
 </ul>
 </form>
+
+<pre>
+<?php print_r($data);?></pre>
