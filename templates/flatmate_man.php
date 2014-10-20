@@ -8,7 +8,7 @@
     <th><?php print t('Action'); ?></th>
   </tr>
 <?php
-
+if (isset($data) && isset($data['flatmates'])){
 foreach ($data['flatmates'] as $flatmate){
 	?>
 	<form action="." method="POST">
@@ -22,7 +22,8 @@ foreach ($data['flatmates'] as $flatmate){
 	</tr>
 	</form>
 	<?php 
-}
+} // foreach
+} // if
 ?>
 	<form action="." method="POST">
 	<tr>
@@ -34,5 +35,9 @@ foreach ($data['flatmates'] as $flatmate){
 		<td><input type="submit"/></td>
 	</tr>
 	</form>
-
 </table>
+<form action="." method="post">
+<ul class="menu">
+  <li><input type="submit" name="home" value="<?php print t('home');?>"/></li>
+</ul>
+</form>
