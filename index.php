@@ -24,6 +24,8 @@ if (isset($_POST['flatmate'])){
   include 'templates/room_man.php';
 } else if (isset($_POST['manage_rooms'])){
   include 'templates/room_man.php';
+} else if (isset($_POST['allotment'])){
+  print_r($_POST);
 } else {
 	include 'templates/overview.php';	
 }

@@ -1,3 +1,6 @@
+<form action="." method="POST">
+<input name="allotment[from]" value="<?php print date('Y-m-d'); ?>"/>
+<input name="allotment[till]" value="<?php print date('Y-m-d'); ?>"/>
 <table>
   <tr>
     <th><?php print t('Id'); ?></th>
@@ -11,19 +14,19 @@ if (isset($data)){
 		foreach ($data['flatmates'] as $flatmate){
       $room=$data['rooms'][$flatmate['room']];
 	?>
-	<form action="." method="POST">
 	<tr>
-	  <td><input type="hidden" name="allotment[id]" value="<?php print $room['id'];?>"/><?php print $flatmate['id'];?></td>
+	  <td><?php print $room['id'];?></td>
 	  <td><?php print $room['name'];?></td>
-		<td><input type="text" name="allotment[percentage]" value="<?php print $base_dist[$room['id']];?>"/>%</td>
+		<td><input type="text" name="allotment[rooms][<?php print $room['id']; ?>]" value="<?php print $base_dist[$room['id']];?>"/>%</td>
 	</tr>
-	</form>
 	<?php 
 } // foreach
 } // if
 } // if
 ?>
 </table>
+<input type="submit" />
+</form>
 <form action="." method="post">
 <ul class="menu">
   <li><input type="submit" name="home" value="<?php print t('home');?>"/></li>
