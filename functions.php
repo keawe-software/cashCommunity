@@ -27,15 +27,16 @@
         $base_dist=array();
         $count=0;
         foreach ($data['flatmates'] as $mate){
+          $mate_id=$mate['id'];
           $room_id=$mate['room'];
           $room_size=$data['rooms'][$room_id]['size'];
           $separate+=$room_size;
-          $base_dist[$room_id]=$room_size;
+          $base_dist[$mate_id]=$room_size;
           $count+=1;
         }
         $common=($flat_size-$separate)/$count;
-        foreach ($base_dist as $id => $percentage){
-          $base_dist[$id] = 100*($percentage + $common)/$flat_size;
+        foreach ($base_dist as $mate_id => $percentage){
+          $base_dist[$mate_id] = 100*($percentage + $common)/$flat_size;
         }
       }
     }
@@ -106,14 +107,7 @@
       return;
     }
     $id=$room['id'];
-  	foreach ($data['rooms'] as $r){
-  		if ($r['id']==$id){
-  			foreach ($room as $key => $val){
-  				$data['rooms'][$id][$key]=$val;
-  			}
-  			break;
-  		}
-  	}
+    $data['rooms'][$id]=$room;
   	saveData($data);
   }
 
@@ -153,4 +147,9 @@
     saveData($data);
   }
 
-
+  function editDistribution($dist){
+    print_r($dist);
+    $id=$dist['id'];
+    $data['distributions'][$id]=$dist;
+    saveData($data);
+  }

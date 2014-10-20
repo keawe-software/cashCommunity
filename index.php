@@ -27,7 +27,11 @@ if (isset($_POST['flatmate'])){
 } else if (isset($_POST['newdistribution'])){
   print_r($_POST);
   addDistribution($_POST['newdistribution']);
-  include 'templates/manage_distributions';
+  include 'templates/distribution_man.php';
+} else if (isset($_POST['distribution'])){
+  editDistribution($_POST['distribution']);
+  include 'templates/distribution_man.php';
+  print_r($data);
 } else {
 	include 'templates/overview.php';	
 }
