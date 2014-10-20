@@ -116,3 +116,41 @@
   	}
   	saveData($data);
   }
+
+  function no_date($raw){
+    return false; // TODO: implement
+  }
+
+  function addDistribution($dist){
+    global $data, $warnings;
+    if (empty($dist)){
+      $warnings[]=t('no distribution data given');
+      return;
+    }
+    if (!isset($dist['from']) || no_date($dist['from'])){
+      $warnings[]=t('no valid start date');
+      return;
+    }
+    if (isset($dist['till']) && no_date($dist['till'])){
+      $warnings[]=t('no valid end date');
+      return;
+    }
+    if (empty($dist['rooms'])){
+      $warnings[]=t('distribution contains no values!');
+      return;
+    }
+    foreach ($dist['rooms'] as $room){
+      if (!is_numeric($room)){
+        $warnings[]=str_replace('%d',$room,t('%d is not a valid value'));
+        return;
+      }
+    }
+    if (!isset($data['distributions'])){
+      $data['distributions']=array();
+    }
+    $data['distributions'][]=$dist;
+    print_r($data);
+    saveData($data);
+  }
+
+
