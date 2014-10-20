@@ -7,7 +7,6 @@
   			$data=array();
   		}
   	}
-  	return $data;
   }
 
   function saveData($data){
@@ -17,7 +16,7 @@
   }
 
   function addFlatmate($flatmate){
-    $data=getData();
+    global $data;
     if (isset($data['flatmates'])){
     	$num=count($data['flatmates']);
     } else {
@@ -26,11 +25,10 @@
     $flatmate['id']=$num;
     $data['flatmates'][]=$flatmate;
     saveData($data);
-    return $data;
   }
   
   function editFlatmate($flatmate){
-  	$data=getData();
+  	global $data;
     $id=$flatmate['id'];
   	foreach ($data['flatmates'] as $mate){
   		if ($mate['id']==$id){
@@ -41,11 +39,10 @@
   		}
   	}
   	saveData($data);
-  	return $data;
   }
 
   function addRoom($room){
-    $data=getData();
+    global $data;
     if (isset($data['rooms'])){
     	$num=count($data['rooms']);
     } else { 	
@@ -54,11 +51,10 @@
     $room['id']=$num;
     $data['rooms'][]=$room;
     saveData($data);
-    return $data;
   }
 
   function editRoom($room){
-  	$data=getData();
+  	global $data;
     $id=$room['id'];
   	foreach ($data['rooms'] as $r){
   		if ($r['id']==$id){
@@ -69,5 +65,4 @@
   		}
   	}
   	saveData($data);
-  	return $data;
   }
