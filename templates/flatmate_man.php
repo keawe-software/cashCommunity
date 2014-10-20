@@ -21,7 +21,7 @@ function roomlist($select=null){
       if ($select!=null && $room['id']==$select){
       	print '<option selected vaule="'.$room['id'].'">'.$room['name'].'</option>'.PHP_EOL;
       } else {
-				print '<option vaule="'.$room['id'].'">'.$room['name'].'</option>'.PHP_EOL;
+				print '<option value="'.$room['id'].'">'.$room['name'].'</option>'.PHP_EOL;
       }
 		}
 	}

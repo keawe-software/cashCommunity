@@ -31,3 +31,8 @@ foreach ($data['rooms'] as $room){
 	</form>
 
 </table>
+<form action="." method="post">
+<ul class="menu">
+  <li><input type="submit" name="home" value="<?php print t('home');?>"/></li>
+</ul>
+</form>
