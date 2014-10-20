@@ -30,59 +30,9 @@
     saveData($data);
   }
   
-  function editFlatmate($flatmate){
-  	global $data;
-    $id=$flatmate['id'];
-  	foreach ($data['flatmates'] as $mate){
-  		if ($mate['id']==$id){
-  			foreach ($flatmate as $key => $val){
-  				$data['flatmates'][$id][$key]=$val;
-  			}
-  			break;
-  		}
-  	}
-  	saveData($data);
-  }
 
-  function addRoom($room){
-    global $data, $warnings;
-    if (isset($room['size'])){
-      $room['size']=str_replace(',','.',$room['size']);
-      if (!is_numeric($room['size'])){
-        $warnings[]=t('given room size is not a number');
-        return;
-      }
-    } else {
-      $warnings[]=t('no room size given!');
-      return;
-    }
-    if (isset($data['rooms'])){
-    	$num=count($data['rooms']);
-    } else { 	
-    	$num=0;
-    }
-    $room['id']=$num;
-    $data['rooms'][]=$room;
-    saveData($data);
-  }
 
-  function editRoom($room){
-    global $data, $warnings;
-    if (isset($room['size'])){
-      $room['size']=str_replace(',','.',$room['size']);
-      if (!is_numeric($room['size'])){
-        $warnings[]=t('given room size is not a number');
-        return;
-      }
-    } else {
-      $warnings[]=t('no room size given!');
-      return;
-    }
-    $id=$room['id'];
-    $data['rooms'][$id]=$room;
-  	saveData($data);
-  }
-
+  
   function no_date($raw){
     return false; // TODO: implement
   }
@@ -125,3 +75,50 @@
     $data['distributions'][$id]=$dist;
     saveData($data);
   }
+  
+  function editFlatmate($flatmate){
+  	global $data;
+  	$id=$flatmate['id'];
+  	$data['flatmates'][$id]=$flatmate;
+  	saveData($data);
+  }
+  
+  function editRoom($room){
+  	global $data, $warnings;
+  	if (isset($room['size'])){
+  		$room['size']=str_replace(',','.',$room['size']);
+  		if (!is_numeric($room['size'])){
+  			$warnings[]=t('given room size is not a number');
+  			return;
+  		}
+  	} else {
+  		$warnings[]=t('no room size given!');
+  		return;
+  	}
+  	$id=$room['id'];
+  	$data['rooms'][$id]=$room;
+  	saveData($data);
+  }
+  
+  function addRoom($room){
+  	global $data, $warnings;
+  	if (isset($room['size'])){
+  		$room['size']=str_replace(',','.',$room['size']);
+  		if (!is_numeric($room['size'])){
+  			$warnings[]=t('given room size is not a number');
+  			return;
+  		}
+  	} else {
+  		$warnings[]=t('no room size given!');
+  		return;
+  	}
+  	if (isset($data['rooms'])){
+  		$num=count($data['rooms']);
+  	} else {
+  		$num=0;
+  	}
+  	$room['id']=$num;
+  	$data['rooms'][]=$room;
+  	saveData($data);
+  }
+  
