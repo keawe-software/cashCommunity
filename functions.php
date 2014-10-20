@@ -34,7 +34,6 @@
   			break;
   		}
   	}
-    print_r($data);
   	saveData($data);
   	return $data;
   }
@@ -43,14 +42,26 @@
     $data=getData();
     if (isset($data['rooms'])){
     	$num=count($data['rooms']);
-    } else {
+    } else { 	
     	$num=0;
     }
     $room['id']=$num;
     $data['rooms'][]=$room;
     saveData($data);
-    print_r($data);
     return $data;
   }
 
-  
+  function editRoom($room){
+  	$data=getData();
+    $id=$room['id'];
+  	foreach ($data['rooms'] as $r){
+  		if ($r['id']==$id){
+  			foreach ($room as $key => $val){
+  				$data['rooms'][$id][$key]=$val;
+  			}
+  			break;
+  		}
+  	}
+  	saveData($data);
+  	return $data;
+  }
