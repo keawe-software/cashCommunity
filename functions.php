@@ -3,9 +3,8 @@
   	global $data;
   	if (!isset($data)){
   		$data=json_decode(file_get_contents('data.json'),true);
-  		if ($data===FALSE){
-  			print "error";
-  			return FALSE;
+  		if (empty($data)){
+  			$data=array();
   		}
   	}
   	return $data;
@@ -42,9 +41,14 @@
 
   function addRoom($room){
     $data=getData();
-    $num=count($data['rooms']);;
+    if (isset($data['rooms'])){
+    	$num=count($data['rooms']);
+    } else {
+    	$num=0;
+    }
     $room['id']=$num;
     $data['rooms'][]=$room;
     saveData($data);
+    print_r($data);
     return $data;
   }

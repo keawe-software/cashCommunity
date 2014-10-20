@@ -6,7 +6,7 @@
     <th><?php print t('Action'); ?></th>
   </tr>
 <?php
-
+if (isset($data) && isset($data['rooms'])){
 foreach ($data['rooms'] as $room){
 	?>
 	<form action="." method="POST">
@@ -18,7 +18,8 @@ foreach ($data['rooms'] as $room){
 	</tr>
 	</form>
 	<?php 
-}
+} //foreach
+} // if
 ?>
 	<form action="." method="POST">
 	<tr>
