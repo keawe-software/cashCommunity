@@ -10,8 +10,6 @@
   }
 
   function saveData($data){
-  	print_r($_POST);
-  	print_r($data);
   	file_put_contents('data.json', json_encode($data));
   }
 
@@ -42,7 +40,17 @@
   }
 
   function addRoom($room){
-    global $data;
+    global $data, $warnings;
+    if (isset($room['size'])){
+      $room['size']=str_replace(',','.',$room['size']);
+      if (!is_numeric($room['size'])){
+        $warnings[]=t('given room size is not a number');
+        return;
+      }
+    } else {
+      $warnings[]=t('no room size given!');
+      return;
+    }
     if (isset($data['rooms'])){
     	$num=count($data['rooms']);
     } else { 	
@@ -54,7 +62,17 @@
   }
 
   function editRoom($room){
-  	global $data;
+    global $data, $warnings;
+    if (isset($room['size'])){
+      $room['size']=str_replace(',','.',$room['size']);
+      if (!is_numeric($room['size'])){
+        $warnings[]=t('given room size is not a number');
+        return;
+      }
+    } else {
+      $warnings[]=t('no room size given!');
+      return;
+    }
     $id=$room['id'];
   	foreach ($data['rooms'] as $r){
   		if ($r['id']==$id){
