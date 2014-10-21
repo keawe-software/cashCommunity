@@ -14,7 +14,8 @@ foreach ($data['rooms'] as $room){
 	  <td><input type="hidden" name="room[id]" value="<?php print $room['id'];?>"/><?php print $room['id'];?></td>
 	  <td><input type="text" name="room[name]" value="<?php print $room['name'];?>"/></td>
 		<td><input type="text" name="room[size]" value="<?php print $room['size'];?>"/></td>
-		<td><button name="edit" value="room" type="submit"><?php print t('save');?>		    <button name="edit" value="association" type="submit"><?php print t('room association...')?></button></button></td>
+		<td><button name="action" value="edit room" type="submit"><?php print t('save');?></button>
+		    <button name="action" value="manage associations" type="submit"><?php print t('room association...')?></button></td>
 	</tr>
 	</form>
 	<?php 
@@ -24,9 +25,9 @@ foreach ($data['rooms'] as $room){
 	<form action="." method="POST">
 	<tr>
 	  <td></td>
-	  <td><input type="text" name="newroom[name]"/></td>
-		<td><input type="text" name="newroom[size]"/></td>
-		<td><input type="submit"/></td>
+	  <td><input type="text" name="room[name]"/></td>
+		<td><input type="text" name="room[size]"/></td>
+		<td><button type="submit" name="action" value="add room"><?php print t('save');?></button></td>
 	</tr>
 	</form>
   <tr>
@@ -36,8 +37,3 @@ foreach ($data['rooms'] as $room){
     <td></td>
   </tr>
 </table>
-<form action="." method="post">
-<ul class="menu">
-  <li><input type="submit" name="home" value="<?php print t('home');?>"/></li>
-</ul>
-</form>

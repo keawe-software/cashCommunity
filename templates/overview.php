@@ -1,8 +1,8 @@
 <form action="." method="post">
 <ul class="menu">
-  <li><input type="submit" name="manage_rooms" value="<?php print t('manage_rooms'); ?>"/></li>
-  <li><input type="submit" name="manage_flatmates" value="<?php print t('manage_flatmates'); ?>"/></li>
-  <li><input type="submit" name="manage_distributions" value="<?php print t('manage_distributions'); ?>"/></li>
-	<li><input type="submit" name="manage_invoices" value="<?php print t('manage_invoices'); ?>"/></li>
+  <li><button type="submit" name="action" value="manage rooms"><?php print t('manage_rooms'); ?></button></li>
+  <li><button type="submit" name="action" value="manage flatmates"><?php print t('manage_flatmates'); ?></button></li>
+  <li><button type="submit" name="action" value="manage distributions"><?php print t('manage_distributions'); ?></button></li>
+	<li><button type="submit" name="action" value="manage invoices"><?php print t('manage_invoices'); ?></button></li>
   </ul>
 </form>
