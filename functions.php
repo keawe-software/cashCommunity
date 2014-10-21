@@ -217,7 +217,82 @@
   	saveData($data);
   }
   
-  function readBalance($flatmate){
+  function getRooms($flatmate){
+  	global $data;
+  	$associations=array();
+  	foreach ($data['rooms'] as $room){
+  		if (isset($room['associations'])){
+  			foreach ($room['associations'] as $assoc){
+  				if ($assoc['flatmate']==$flatmate){
+  					$associations[]=$assoc;
+  				}
+  			}
+  		}
+  	}
+  	return $associations;
+  }
+  
+  function getNumberOfDays($object){
+  	if (!isset($object['from'])){
+  		return 0;
+  	}
+  	if (!isset($object['till'])){
+  		return 0;
+  	}
+  	return $object['till']-$object['from'];
+  }
+  
+  function getOverlap($object1,$object2){
+  	if (!isset($object1['from'])){
+  		return 0;
+  	}
+  	if (!isset($object1['till'])){
+  		return 0;
+  	}
+  	if (!isset($object2['from'])){
+  		return 0;
+  	}
+  	if (!isset($object2['till'])){
+  		return 0;
+  	}
   	
+  }
+  
+  function readBalance($flatmate){
+  	global $data;
+  	$rooms=getRooms($flatmate['id']);
+  	print '<pre>';
+  	print_r($rooms);
+  	print '</pre>';
+  	$balance=0;
+  	$personalInvoices=array();
+  	foreach ($data['invoices'] as $invoice){  		
+  		$dist_id=$invoice['distribution'];
+  		$distribution=$data['distributions'][$dist_id];
+  		$invoiceDays=getNumberOfDays($invoice);
+  		
+  		$parts=array();
+  		$part_sum=0;
+  		foreach ($distribution['rooms'] as $room_id => $part){
+  			$part_sum+=$part; // calculate overall
+  		}
+  	  foreach ($distribution['rooms'] as $room_id => $part){
+  	  	$room_name=$data['rooms'][$room_id]['name'];  	  	
+  			foreach ($rooms as $room){
+  				if ($room['room']==$room_id){
+  					$overlap=getOverlap($invoice,$room);
+  					$overlapDays=getNumberOfDays($overlap);
+  					if ($overlapDays>0){
+  						$percent=100*$part/$part_sum;
+  						$text=t('%name has lived for %days in room %room, which has allotment of %percent% on invoice "%invoice"');
+  						$keys=array('%name',          '%days', '%room',  '%percent','%invoice');
+  						$repl=array($flatmate['name'],$overlap,$room_name,$percent, $invoice['description']);
+  						print str_replace($keys, $repl, $subject).'<br/>'.PHP_EOL;
+							$balance+=($overlapDays/$invoiceDays) * $invoice['value'] * $part / $part_sum;
+  					}
+  				}
+  			}
+  		}
+  	}
   }
   
