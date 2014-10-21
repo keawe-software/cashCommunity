@@ -39,6 +39,10 @@ if (isset($_POST['action'])){
 		editFlatmate($_POST['flatmate']);
 		include 'templates/flatmate_man.php';
 				
+	} else if ($action=='edit invoice'){
+		editInvoice($_POST['invoice']);
+		include 'templates/invoice_man.php';
+				
 	} else if ($action=='edit room'){
 		editRoom($_POST['room']);
 		include 'templates/room_man.php';

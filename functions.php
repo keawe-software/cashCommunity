@@ -107,6 +107,23 @@
   	saveData($data);
   }
   
+  function editInvoice($invoice){
+  	global $data, $warnings;
+  	if (isset($invoice['value'])){
+  		$invoice['value']=str_replace(',','.',$invoice['value']);
+  		if (!is_numeric($invoice['value'])){
+  			$warnings[]=t('given invoice value is not a number');
+  			return;
+  		}
+  	} else {
+  		$warnings[]=t('no invoice value given!');
+  		return;
+  	}
+  	$id=$invoice['id'];
+  	$data['invoices'][$id]=$invoice;
+  	saveData($data);
+  }
+  
   function addRoom($room){
   	global $data, $warnings;
   	if (isset($room['size'])){
