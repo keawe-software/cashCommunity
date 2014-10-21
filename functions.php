@@ -239,7 +239,7 @@
   	if (!isset($object['till'])){
   		return 0;
   	}
-  	return $object['till']-$object['from'];
+  	return $object['till']-$object['from']+1;
   }
   
   function getOverlap($object1,$object2){
@@ -255,7 +255,12 @@
   	if (!isset($object2['till'])){
   		return 0;
   	}
-  	
+    $from=max($object1['from'],$object2['from']);    
+    $till=min($object1['till'],$object2['till']);
+    if ($from>$till){
+    	return null;
+    }
+    return array('from'=>$from,'till'=>$till);        
   }
   
   function readBalance($flatmate){
@@ -284,15 +289,17 @@
   					$overlapDays=getNumberOfDays($overlap);
   					if ($overlapDays>0){
   						$percent=100*$part/$part_sum;
-  						$text=t('%name has lived for %days in room %room, which has allotment of %percent% on invoice "%invoice"');
-  						$keys=array('%name',          '%days', '%room',  '%percent','%invoice');
-  						$repl=array($flatmate['name'],$overlap,$room_name,$percent, $invoice['description']);
-  						print str_replace($keys, $repl, $subject).'<br/>'.PHP_EOL;
+  						$text=t('%name has %days days in room "%room", which has allotment of %percent% on %invoice_days day invoice "%description"');
+  						$keys=array('%name',          '%days',     '%room',  '%percent','%description',            '%invoice_days');
+  						$repl=array($flatmate['name'],$overlapDays,$room_name,$percent, $invoice['description'],$invoiceDays);
+  						print str_replace($keys, $repl, $text).'<br/>'.PHP_EOL;
 							$balance+=($overlapDays/$invoiceDays) * $invoice['value'] * $part / $part_sum;
+							// TODO: nicht bewohnte Zimmer beachten
   					}
   				}
   			}
   		}
   	}
+  	print t("total balance:").' '.$balance.'<br/>'.PHP_EOL;
   }
   
