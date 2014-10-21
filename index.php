@@ -18,6 +18,10 @@ if (isset($_POST['action'])){
 		addFlatmate($_POST['flatmate']);
 		include 'templates/flatmate_man.php';
 	
+	} else 	if ($action=='add invoice'){
+		addInvoice($_POST['invoice']);
+		include 'templates/invoice_man.php';
+	
 	} else if ($action=='add room'){
 		addRoom($_POST['room']);
 		include 'templates/room_man.php';

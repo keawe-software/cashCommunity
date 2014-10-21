@@ -36,11 +36,10 @@
 
   function addFlatmate($flatmate){
     global $data;
-    if (isset($data['flatmates'])){
-    	$num=count($data['flatmates']);
-    } else {
-    	$num=0;
+    if (!isset($data['flatmates'])){
+    	$data['flatmates']=array();
     }
+    $num=count($data['flatmates']);
     $flatmate['id']=$num;
     $data['flatmates'][]=$flatmate;
     saveData($data);
@@ -120,13 +119,33 @@
   		$warnings[]=t('no room size given!');
   		return;
   	}
-  	if (isset($data['rooms'])){
-  		$num=count($data['rooms']);
-  	} else {
-  		$num=0;
+  	if (!isset($data['rooms'])){
+  		$data['rooms']=array();
   	}
+  	$num=count($data['rooms']);
   	$room['id']=$num;
   	$data['rooms'][]=$room;
+  	saveData($data);
+  }
+  
+  function addInvoice($invoice){
+  	global $data, $warnings;
+  	if (isset($invoice['value'])){
+  		$invoice['value']=str_replace(',','.',$invoice['value']);
+  		if (!is_numeric($invoice['value'])){
+  			$warnings[]=t('given invoice value is not a number');
+  			return;
+  		}
+  	} else {
+  		$warnings[]=t('no invoice value given!');
+  		return;
+  	}
+  	if (!isset($data['invoices'])){
+  		$data['invoices']=array();
+  	}
+		$num=count($data['invoices']);
+  	$invoice['id']=$num;
+  	$data['invoices'][]=$invoice;
   	saveData($data);
   }
   

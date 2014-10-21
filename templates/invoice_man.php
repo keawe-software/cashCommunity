@@ -5,7 +5,7 @@
   		return;
   	}
   	?>
-  	<select name="invouce[distribution]">
+  	<select name="invoice[distribution]">
   	<?php
   	
 		foreach ($data['distributions'] as $distribution){
