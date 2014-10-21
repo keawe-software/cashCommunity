@@ -78,7 +78,7 @@
   }
 
   function editDistribution($dist){
-    print_r($dist);
+  	global $data;
     $id=$dist['id'];
     $data['distributions'][$id]=$dist;
     saveData($data);

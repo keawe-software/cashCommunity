@@ -23,6 +23,10 @@ if (isset($_POST['action'])){
 		$_POST['room']=array('id'=>$_POST['association']['room']); // needed for assoc manager
 		include 'templates/association_man.php';
 		
+	} else if ($action=='edit distribution'){
+		editDistribution($_POST['distribution']);
+		include 'templates/distribution_man.php';
+		
 	} else if ($action=='edit flatmate'){
 		editFlatmate($_POST['flatmate']);
 		include 'templates/flatmate_man.php';
