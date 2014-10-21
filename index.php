@@ -60,12 +60,6 @@ if (isset($_POST['action'])){
 			
 	}
 } 	
-?><pre>POST:
-<?php 
-print_r($_POST);
-?>DATA:
-<?php
-print_r($data);
-?></pre><?php
+
 
 include 'templates/foot.php';
