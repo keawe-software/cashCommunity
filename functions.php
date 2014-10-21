@@ -289,7 +289,7 @@
   					$overlapDays=getNumberOfDays($overlap);
   					if ($overlapDays>0){
   						$percent=100*$part/$part_sum;
-  						$text=t('%name has %days days in room "%room", which has allotment of %percent% on %invoice_days day invoice "%description"');
+  						$text=t('Of the %invoice_days days of invoice "%description", %name has lived %days days in "%room" which as an allotment of %percent%.');
   						$keys=array('%name',          '%days',     '%room',  '%percent','%description',            '%invoice_days');
   						$repl=array($flatmate['name'],$overlapDays,$room_name,$percent, $invoice['description'],$invoiceDays);
   						print str_replace($keys, $repl, $text).'<br/>'.PHP_EOL;
