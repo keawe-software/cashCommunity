@@ -119,6 +119,10 @@
   		$warnings[]=t('no invoice value given!');
   		return;
   	}
+  	$invoice['from']=dateToDay($invoice['from']);
+  	if (isset($invoice['till'])){
+  		$invoice['till']=dateToDay($invoice['till']);
+  	}
   	$id=$invoice['id'];
   	$data['invoices'][$id]=$invoice;
   	saveData($data);
@@ -160,14 +164,32 @@
   	if (!isset($data['invoices'])){
   		$data['invoices']=array();
   	}
+  	$invoice['from']=dateToDay($invoice['from']);
+  	if (isset($invoice['till'])){
+  		$invoice['till']=dateToDay($invoice['till']);
+  	}  	 
 		$num=count($data['invoices']);
   	$invoice['id']=$num;
   	$data['invoices'][]=$invoice;
   	saveData($data);
   }
   
+  function dateToDay($date){
+  	global $secondsperday;
+  	return round(strtotime($date)/$secondsperday);
+  }
+  
+  function daysToDate($days){
+  	global $secondsperday;
+  	return date('Y-m-d',$days*$secondsperday);
+  }
+  
   function addAssociation($assoc){
-  	global $data;
+  	global $data;  	  	  	
+  	$assoc['from']=dateToDay($assoc['from']);
+  	if (isset($assoc['till'])){
+  		$assoc['till']=dateToDay($assoc['till']);
+  	}
   	$room_id=$assoc['room'];
   	$from=$assoc['from'];
   	if (!isset($data['rooms'][$room_id]['associations'])){
@@ -179,6 +201,10 @@
 
   function editAssociation($assoc){
   	global $data;
+  	$assoc['from']=dateToDay($assoc['from']);
+  	if (isset($assoc['till'])){
+  		$assoc['till']=dateToDay($assoc['till']);
+  	}  	 
   	$room_id=$assoc['room'];
   	$from=$assoc['from'];
   	if (!isset($data['rooms'][$room_id]['associations'])){

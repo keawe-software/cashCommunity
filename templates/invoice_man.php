@@ -40,8 +40,8 @@
     <td><input type="hidden" name="invoice[id]" value="<?php print $invoice['id']; ?>"/><?php print $invoice['id']; ?></td>
     <td><input type="text" name="invoice[description]" value="<?php print $invoice['description']; ?>"/></td>
     <td><input type="text" name="invoice[value]" value="<?php print $invoice['value']; ?>"/></td>
-    <td><input type="text" name="invoice[from]" value="<?php print $invoice['from']; ?>"/></td>
-    <td><input type="text" name="invoice[till]" value="<?php print $invoice['till']; ?>"/></td>
+    <td><input type="text" name="invoice[from]" value="<?php print daysToDate($invoice['from']); ?>"/></td>
+    <td><input type="text" name="invoice[till]" value="<?php print daysToDate($invoice['till']); ?>"/></td>
     <td><?php distributionSelector($invoice['distribution']); ?></td>
     <td><button type="submit" name="action" value="edit invoice"><?php print t('save');?></button></td>
   </tr>

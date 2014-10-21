@@ -1,6 +1,7 @@
 <?php
-  include 'functions.php';
-
+  $secondsperday=60*60*24;
+  include 'functions.php';	
+  
   getData();
   calculate();
   $warnings=array();

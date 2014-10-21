@@ -34,8 +34,8 @@
   <form action="." method="POST">
   <tr>
     <td><input type="hidden" name="association[room]" value="<?php print $room['id']; ?>"/>
-        <input type="text" name="association[from]" value="<?php print $from; ?>"/></td>
-    <td><input type="text" name="association[till]" value="<?php print $assoc['till']; ?>"/></td>
+        <input type="text" name="association[from]" value="<?php print daysToDate($from); ?>"/></td>
+    <td><input type="text" name="association[till]" value="<?php print daysToDate($assoc['till']); ?>"/></td>
     <td><?php flatmateSelector($assoc['flatmate']); ?></td>
     <td><button type="submit" name="action" value="edit association"><?php print t('save');?></button>
   </tr>
@@ -55,4 +55,3 @@
   </tr>
   </form>  
 </table>
-<pre><?php print_r($data);?></pre>
