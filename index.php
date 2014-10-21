@@ -10,6 +10,10 @@ if (isset($_POST['action'])){
 		$_POST['room']=array('id'=>$_POST['association']['room']); // needed for assoc manager
 		include 'templates/association_man.php';
 		
+	} else if ($action=='add distribution'){
+		addDistribution($_POST['distribution']);
+		include 'templates/distribution_man.php';
+		
 	} else if ($action=='add room'){
 		addRoom($_POST['room']);
 		include 'templates/room_man.php';
@@ -56,8 +60,12 @@ if (isset($_POST['action'])){
   include 'templates/distribution_man.php';
   print_r($data);
 } 	
-?><pre><?php 
+?><pre>POST:
+<?php 
 print_r($_POST);
+?>DATA:
+<?php
+print_r($data);
 ?></pre><?php
 
 include 'templates/foot.php';

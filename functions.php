@@ -11,7 +11,23 @@
 
   function calculate(){
     global $data, $flat_size, $base_dist;
-    // TODO: implement
+    if (!isset($data)){
+      $warnings[]=t('no data given for flat size calculation');
+    } else if (!isset($data['rooms']) || empty($data['rooms'])){
+      $warnings[]=t('no rooms given for flat size calculation');
+    } else {
+      $flat_size=0;
+      foreach ($data['rooms'] as $room){
+        $flat_size+=$room['size'];
+      }
+	
+      $base_dist=array();
+      $base_dist['name']=t('basic distribution by area');
+      $base_dist['rooms']=array();      
+      foreach ($data['rooms'] as $room_id => $room){
+      	$base_dist['rooms'][$room_id]=100*$room['size']/$flat_size;
+      }      
+    }
   }
 
   function saveData($data){
@@ -43,14 +59,6 @@
       $warnings[]=t('no distribution data given');
       return;
     }
-    if (!isset($dist['from']) || no_date($dist['from'])){
-      $warnings[]=t('no valid start date');
-      return;
-    }
-    if (isset($dist['till']) && no_date($dist['till'])){
-      $warnings[]=t('no valid end date');
-      return;
-    }
     if (empty($dist['rooms'])){
       $warnings[]=t('distribution contains no values!');
       return;
@@ -64,8 +72,8 @@
     if (!isset($data['distributions'])){
       $data['distributions']=array();
     }
+    $dist['id']=count($data['distributions']);
     $data['distributions'][]=$dist;
-    print_r($data);
     saveData($data);
   }
 
