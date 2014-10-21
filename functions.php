@@ -188,3 +188,7 @@
   	saveData($data);
   }
   
+  function readBalance($flatmate){
+  	
+  }
+  

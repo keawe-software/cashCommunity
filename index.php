@@ -62,6 +62,10 @@ if (isset($_POST['action'])){
 	} else if ($action=='manage rooms'){
 		include 'templates/room_man.php';
 			
+	} else if ($action=='show balance'){
+		readBalance($_POST['flatmate']);
+		include 'templates/balance_man.php';
+			
 	}
 } 	
 
