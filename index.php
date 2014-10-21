@@ -14,6 +14,10 @@ if (isset($_POST['action'])){
 		addDistribution($_POST['distribution']);
 		include 'templates/distribution_man.php';
 		
+	} else 	if ($action=='add flatmate'){
+		addFlatmate($_POST['flatmate']);
+		include 'templates/flatmate_man.php';
+	
 	} else if ($action=='add room'){
 		addRoom($_POST['room']);
 		include 'templates/room_man.php';
@@ -49,20 +53,8 @@ if (isset($_POST['action'])){
 		
 	} else if ($action=='manage rooms'){
 		include 'templates/room_man.php';
-		
-	} else 	if ($action=='new flatmate'){
-		addFlatmate($_POST['flatmate']);
-		include 'templates/flatmate_man.php';
-				
+			
 	}
-} else if (isset($_POST['newdistribution'])){
-  print_r($_POST);
-  addDistribution($_POST['newdistribution']);
-  include 'templates/distribution_man.php';
-} else if (isset($_POST['distribution'])){
-  editDistribution($_POST['distribution']);
-  include 'templates/distribution_man.php';
-  print_r($data);
 } 	
 ?><pre>POST:
 <?php 

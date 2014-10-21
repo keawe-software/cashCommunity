@@ -26,7 +26,7 @@ if (isset($data)){
 	<tr>
 	  <td></td>
 	  <td><input type="text" name="flatmate[name]"/></td>
-		<td><button type="submit" name="action" value="new flatmate"><?php print t('save new');?></button></td>
+		<td><button type="submit" name="action" value="add flatmate"><?php print t('save new');?></button></td>
 	</tr>
 	</form>
 </table>
