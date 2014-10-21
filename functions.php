@@ -181,6 +181,9 @@
   
   function daysToDate($days){
   	global $secondsperday;
+  	if ($days<10){
+  		return date('Y-m-d');
+  	}
   	return date('Y-m-d',$days*$secondsperday);
   }
   
