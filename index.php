@@ -5,14 +5,28 @@ include 'templates/head.php';
 include 'templates/overview.php';
 if (isset($_POST['action'])){
 	$action=$_POST['action'];
-	if ($action=='add room'){
+	if ($action=='add association'){
+		addAssociation($_POST['association']);
+		$_POST['room']=array('id'=>$_POST['association']['room']); // needed for assoc manager
+		include 'templates/association_man.php';
+		
+	} else if ($action=='add room'){
 		addRoom($_POST['room']);
 		include 'templates/room_man.php';
+		
+	} else if ($action=='edit association'){
+		editAssociation($_POST['association']);
+		$_POST['room']=array('id'=>$_POST['association']['room']); // needed for assoc manager
+		include 'templates/association_man.php';
 		
 	} else if ($action=='edit flatmate'){
 		editFlatmate($_POST['flatmate']);
 		include 'templates/flatmate_man.php';
 				
+	} else if ($action=='edit room'){
+		editRoom($_POST['room']);
+		include 'templates/room_man.php';
+						
 	} else if ($action=='manage associations'){
 		include 'templates/association_man.php';
 
@@ -31,10 +45,6 @@ if (isset($_POST['action'])){
 	} else 	if ($action=='new flatmate'){
 		addFlatmate($_POST['flatmate']);
 		include 'templates/flatmate_man.php';
-				
-	} else if ($action=='room'){
-		editRoom($_POST['room']);
-		include 'templates/room_man.php';
 				
 	}
 } else if (isset($_POST['newdistribution'])){

@@ -122,3 +122,25 @@
   	saveData($data);
   }
   
+  function addAssociation($assoc){
+  	global $data;
+  	$room_id=$assoc['room'];
+  	$from=$assoc['from'];
+  	if (!isset($data['rooms'][$room_id]['associations'])){
+  		$data['rooms'][$room_id]['associations']=array();
+  	}
+  	$data['rooms'][$room_id]['associations'][$from]=$assoc;
+  	saveData($data);  	
+  }
+
+  function editAssociation($assoc){
+  	global $data;
+  	$room_id=$assoc['room'];
+  	$from=$assoc['from'];
+  	if (!isset($data['rooms'][$room_id]['associations'])){
+  		$data['rooms'][$room_id]['associations']=array();
+  	}
+  	$data['rooms'][$room_id]['associations'][$from]=$assoc;
+  	saveData($data);
+  }
+  
