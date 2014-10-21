@@ -27,7 +27,9 @@
     <th><?php print t('Action'); ?></th>
   </tr>
 
-  <?php foreach ($room['associations'] as $from => $assoc) {?>
+  <?php 
+  if (isset($room['associations'])){
+    foreach ($room['associations'] as $from => $assoc) {?>
 
   <form action="." method="POST">
   <tr>
@@ -40,14 +42,16 @@
   </form>  
   
   
-  <?php } ?>
+  <?php } // foreach 
+  } // if
+  ?>
   <form action="." method="POST">
   <tr>
     <td><input type="hidden" name="association[room]" value="<?php print $room['id']; ?>"/>
         <input type="text" name="association[from]" value="<?php print date('Y-m-d'); ?>"/></td>
     <td><input type="text" name="association[till]" value="<?php print date('Y-m-d'); ?>"/></td>
     <td><?php flatmateSelector(); ?></td>
-    <td><button type="submit" name="action" value="add association"><?php print t('save');?></button>
+    <td><button type="submit" name="action" value="add association"><?php print t('save new');?></button>
   </tr>
   </form>  
 </table>
