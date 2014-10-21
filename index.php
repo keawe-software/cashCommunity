@@ -3,20 +3,23 @@
 include 'init.php';
 include 'templates/head.php';
 include 'templates/overview.php';
-if (isset($_POST['edit'])){
-	$edit=$_POST['edit'];
-	if ($edit=='flatmate'){
+if (isset($_POST['action'])){
+	$action=$_POST['action'];
+	if ($action=='edit flatmate'){
 		editFlatmate($_POST['flatmate']);
-		include 'templates/flatmate_man.php';		
-	} else if ($edit=='association'){
+		include 'templates/flatmate_man.php';
+				
+	} else 	if ($action=='new flatmate'){
+		addFlatmate($_POST['flatmate']);
+		include 'templates/flatmate_man.php';
+				
+	} else if ($action=='association'){
 		include 'templates/association_man.php';
-	} else if ($edit=='room'){
+		
+	} else if ($action=='room'){
 		editRoom($_POST['room']);
 		include 'templates/room_man.php';		
 	}
-} else if (isset($_POST['newflatmate'])){
-	addFlatmate($_POST['newflatmate']);
-	include 'templates/flatmate_man.php';
 } else if (isset($_POST['manage_flatmates'])){
 	getData();
 	include 'templates/flatmate_man.php';

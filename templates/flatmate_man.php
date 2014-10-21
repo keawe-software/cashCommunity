@@ -14,8 +14,7 @@ if (isset($data)){
 	<tr>
 	  <td><input type="hidden" name="flatmate[id]" value="<?php print $flatmate['id'];?>"/><?php print $flatmate['id'];?></td>
 	  <td><input type="text" name="flatmate[name]" value="<?php print $flatmate['name'];?>"/></td>
-		<td><button name="edit" value="flatmate" type="submit"><?php print t('submit')?></button>
-		    <button name="edit" value="association" type="submit"><?php print t('room association...')?></button></td>
+		<td><button name="action" value="edit flatmate" type="submit"><?php print t('save')?></button></td>
 	</tr>
 	</form>
 	<?php 
@@ -26,13 +25,8 @@ if (isset($data)){
 	<form action="." method="POST">
 	<tr>
 	  <td></td>
-	  <td><input type="text" name="newflatmate[name]"/></td>
-		<td><input type="submit"/></td>
+	  <td><input type="text" name="flatmate[name]"/></td>
+		<td><button type="submit" name="action" value="new flatmate"><?php print t('save');?></button></td>
 	</tr>
 	</form>
 </table>
-<form action="." method="post">
-<ul class="menu">
-  <li><input type="submit" name="home" value="<?php print t('home');?>"/></li>
-</ul>
-</form>

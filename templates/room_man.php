@@ -14,7 +14,7 @@ foreach ($data['rooms'] as $room){
 	  <td><input type="hidden" name="room[id]" value="<?php print $room['id'];?>"/><?php print $room['id'];?></td>
 	  <td><input type="text" name="room[name]" value="<?php print $room['name'];?>"/></td>
 		<td><input type="text" name="room[size]" value="<?php print $room['size'];?>"/></td>
-		<td><button name="edit" value="room" type="submit"><?php print t('save');?></button></td>
+		<td><button name="edit" value="room" type="submit"><?php print t('save');?>		    <button name="edit" value="association" type="submit"><?php print t('room association...')?></button></button></td>
 	</tr>
 	</form>
 	<?php 
