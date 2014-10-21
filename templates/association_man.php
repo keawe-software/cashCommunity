@@ -49,7 +49,7 @@
   <tr>
     <td><input type="hidden" name="association[room]" value="<?php print $room['id']; ?>"/>
         <input type="text" name="association[from]" value="<?php print date('Y-m-d'); ?>"/></td>
-    <td><input type="text" name="association[till]" value="<?php print date('Y-m-d'); ?>"/></td>
+    <td><input type="text" name="association[till]"/></td>
     <td><?php flatmateSelector(); ?></td>
     <td><button type="submit" name="action" value="add association"><?php print t('save new');?></button>
   </tr>
