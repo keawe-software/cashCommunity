@@ -1,6 +1,13 @@
 <?php
-print str_replace('%name', $_POST['flatmate']['name'], t('Showing the payments of %name.'));
+$mate_id=$_POST['flatmate']['id'];
+$mate_name=$_POST['flatmate']['name'];
+print str_replace('%name', $mate_name, t('Showing the payments of %name.'));
 ?>
+<form action="." method="POST">
+  <input type="hidden" name="flatmate[id]" value="<?php print $mate_id; ?>" />
+  <input type="hidden" name="flatmate[name]" value="<?php print $mate_name; ?>" />
+  <button type="submit" name="action" value="show balance"><?php print t('show balance');?></button>  
+</form> 
 <table>
   <tr>
     <th><?php print t('Id');?></th>
