@@ -270,14 +270,32 @@
   	global $data;
   	$from=$timespan['from'];
   	$till=$timespan['till'];
-  	foreach ($data['associations'] as $association){
-  	}  	 
+  	print "from: $from<br/>\n";
+  	print "till: $till<br/>\n";
+  	$associations=array();
+  	foreach ($data['associations'] as $association){  		
+  		if (($from <= $association['from'] && $association['from'] <= $till) ||
+  				($from <= $association['till'] && $association['till'] <= $till) ||
+  				($till <= $association['till'] && $association['from'] <= $from))	{
+  			if ($association['from']<$from){
+  				$association['from']=$from;
+  			}
+  			if ($association['till']>$till){
+  				$association['till']=$till;
+  			}  				
+  			$associations[$association['id']]=$association;
+  		}
+  	}
+  	return $associations;
   }
   
   function distributeInvoice($invoice,&$balances){
   	$from=$invoice['from'];
   	$till=$invoice['till'];
-  	getAssociationsFor($invoice);
+  	$associations=getAssociationsFor($invoice);
+  	print '<pre>';
+  	print_r($associations);
+  	print '</pre>';
   }
   
   function readBalance($flatmate){
@@ -286,6 +304,6 @@
   	foreach ($data['invoices'] as $invoice){
   		distributeInvoice($invoice,$balances);
   	}
-  	print $balances[$flatmate['id']];
+  	//print $balances[$flatmate['id']];
   }
   
