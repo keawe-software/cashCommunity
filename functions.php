@@ -13,6 +13,7 @@
   	return dateToDay(date('Y-m-d'));
   }
 
+  /* calculates flat size and basic distribution by room sizes */
   function calculate(){
     global $data, $flat_size, $base_dist;
     if (!isset($data)){
@@ -47,13 +48,6 @@
     $flatmate['id']=$num;
     $data['flatmates'][]=$flatmate;
     saveData($data);
-  }
-  
-
-
-  
-  function no_date($raw){
-    return false; // TODO: implement
   }
 
   function addDistribution($dist){
@@ -178,11 +172,13 @@
   	saveData($data);
   }
   
+  /* convert a date to a day-timestamp */
   function dateToDay($date){
   	global $secondsperday;
   	return round(strtotime($date)/$secondsperday);
   }
   
+  /* convert a day-timestamp to a date in format yyyy-mm-dd */
   function daysToDate($days){
   	global $secondsperday;
   	if ($days<10){
@@ -224,21 +220,7 @@
   	saveData($data);
   }
   
-  function getRooms($flatmate){
-  	global $data;
-  	$associations=array();
-  	foreach ($data['rooms'] as $room){
-  		if (isset($room['associations'])){
-  			foreach ($room['associations'] as $assoc){
-  				if ($assoc['flatmate']==$flatmate){
-  					$associations[]=$assoc;
-  				}
-  			}
-  		}
-  	}
-  	return $associations;
-  }
-  
+  /* get length of a time span in days, including first and last day (from and till) */
   function getNumberOfDays($object){
   	if (!isset($object['from'])){
   		return 0;
@@ -249,6 +231,7 @@
   	return $object['till']-$object['from']+1;
   }
   
+  /* calculate common time span of two time spans */
   function getOverlap($object1,$object2){
   	if (!isset($object1['from'])){
   		return 0;
@@ -270,6 +253,7 @@
     return array('from'=>$from,'till'=>$till);        
   }
   
+  /* get time slices with room-to-flatmate associations in a timespan */
   function getAssociationsFor($timespan){
   	global $data;
   	$from=$timespan['from'];
@@ -331,12 +315,13 @@
   	return $slices;
   }
   
+  /* calculated distribution of an invoice to the flatmates present during the invoice duration */
   function distributeInvoice($invoice,&$balances){
   	global $data;
   	$invoice_id=$invoice['id'];
   	$dist_id=$invoice['distribution'];
   	 
-  	$slices=getAssociationsFor($invoice);
+  	$slices=getAssociationsFor($invoice); // get the time slices for flatmate assignments in this time
   	ksort($slices);
   	$distribution=$data['distributions'][$dist_id];
   	$len=getNumberOfDays($invoice);
@@ -359,11 +344,11 @@
   				}
   				$invoice_bal[$mate]=$invoice_bal[$mate]+$invoice_part*$part/$partsum;
   				$members+=1;
-  			} else {
+  			} else { // room was not occupied => allotment shall be splitted evenly
   				$unpaid+=$invoice_part*$part/$partsum;
   			}  			
   		}
-  		foreach ($rooms as $room_id => $mate){
+  		foreach ($rooms as $room_id => $mate){ // evenly split allotment of unoccupied rooms
   			$invoice_bal[$mate]=$invoice_bal[$mate]+$unpaid/$members;
   		}
   	}
