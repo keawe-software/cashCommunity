@@ -66,6 +66,9 @@ if (isset($_POST['action'])){
 		readBalance($_POST['flatmate']);
 		include 'templates/balance_man.php';
 			
+	} else if ($action=='show payments'){
+		include 'templates/payment_man.php';
+	
 	}
 } 	
 

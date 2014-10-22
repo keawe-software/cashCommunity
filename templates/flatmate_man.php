@@ -15,6 +15,7 @@ if (isset($data)){
 	  <td><input type="hidden" name="flatmate[id]" value="<?php print $flatmate['id'];?>"/><?php print $flatmate['id'];?></td>
 	  <td><input type="text" name="flatmate[name]" value="<?php print $flatmate['name'];?>"/></td>
 		<td><button name="action" value="edit flatmate" type="submit"><?php print t('save')?></button>
+				<button name="action" value="show payments" type="submit"><?php print t('payments')?></button>
 				<button name="action" value="show balance" type="submit"><?php print t('balance')?></button></td>
 	</tr>
 	</form>
