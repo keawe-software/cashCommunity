@@ -277,7 +277,7 @@
   	print "from: $from<br/>\n";
   	print "till: $till<br/>\n";
   	$slices=array();
-  	$slices[$from]=array('till'=>$till,'rooms'=>array());
+  	$slices[$from]=array('from'=>$from,'till'=>$till,'rooms'=>array());
   	foreach ($data['associations'] as $association){
   		$from=$association['from'];
   		$till=$association['till'];
@@ -295,24 +295,32 @@
   				$slices[$start]['rooms'][$room]=$mate; // add new roommate to current slice
   				$checksum+=1;
   			}
-  			if ($start < $from && $till < $end){ // sclice contains range [ < > ]
+  			if ($start < $from && $till < $end){ // sclice contains range [ < > ] -- result: [ | | ]
   				$slices[$from]=$slice;   // only good, if we copy by value, not by reference!!!
-  				$slices[$till+1]=$slice; // only good, if we copy by value, not by reference!!!
-  				$slices[$start]['till']=$from-1;
+  				$slices[$from]['from']=$from; // write first new slice 
   				$slices[$from]['till']=$till;
   				$slices[$from]['rooms'][$room]=$mate;
+  				
+  				$slices[$till+1]=$slice; // only good, if we copy by value, not by reference!!!
+  				$slices[$till+1]['from']=$till+1; // write second new slice
   				$slices[$till+1]['till']=$slice['till'];
+  				
+  				$slices[$start]['till']=$from-1; // update old slice
   				$checksum+=1;
   			}
-  			if ($start<$from && $end <=$till){ // range starts in sclice [ < } or [ < ] >
-  				$slices[$from]=$slice;
+  			if ($start<$from && $end <=$till){ // range starts in sclice [ < } or [ < ] > -- result: [ | ]
+  				$slices[$from]=$slice; // create new slice
+  				$slices[$from]['from']=$from;
   				$slices[$from]['rooms'][$room]=$mate;
-  				$slices[$start]['till']=$from-1;
+  				
+  				$slices[$start]['till']=$from-1; // update old slice
   				$checksum+=1;
   			}
-  			if ($from <= $start && $till < $end){ // range ends in slice < [ > ] or { > ]
-  				$slices[$till+1]=$slice;
-  				$slices[$start]['till']=$till; 
+  			if ($from <= $start && $till < $end){ // range ends in slice < [ > ] or { > ] -- result: [ | ]
+  				$slices[$till+1]=$slice; // create new slice
+  				$slices[$till+1]['from']=$till+1;
+  				
+  				$slices[$start]['till']=$till; // update old slice 
   				$slices[$start]['rooms'][$room]=$mate;
   				$checksum+=1;
   			}
@@ -326,15 +334,47 @@
   }
   
   function distributeInvoice($invoice,&$balances){
-  	$associations=getAssociationsFor($invoice);
-  	ksort($associations);
-  	print '<pre>';
-  	print $invoice['description'].PHP_EOL;
-  	foreach ($associations as $from=>$assoc){
-  		print daysToDate($from).' - '.daysToDate($assoc['till']).PHP_EOL;
-  		print_r($assoc['rooms']);
+  	global $data;
+  	$invoice_id=$invoice['id'];
+  	$dist_id=$invoice['distribution'];
+  	 
+  	$slices=getAssociationsFor($invoice);
+  	ksort($slices);
+  	$distribution=$data['distributions'][$dist_id];
+  	$len=getNumberOfDays($invoice);
+  	$invoice_bal=array();
+  	foreach ($slices as $slice){  		
+  		$slice_len=getNumberOfDays($slice);
+  		$invoice_part=$slice_len/$len;
+  		$unpaid=0;
+  		$members=0;
+  		$partsum=0;
+  		$rooms=$slice['rooms'];
+  		foreach ($distribution['rooms'] as $room_id => $part){
+  			$partsum+=$part;  			
+  		}
+			foreach ($distribution['rooms'] as $room_id => $part){
+  			if (isset($rooms[$room_id])){ // room was occupied for this slice of time
+  				$mate=$rooms[$room_id];
+  				if (!isset($invoice_bal[$mate])){
+  					$invoice_bal[$mate]=0;
+  				}
+  				$invoice_bal[$mate]=$invoice_bal[$mate]+$invoice_part_val*$part/$partsum;
+  				$members+=1;
+  			} else {
+  				$unpaid+=$invoice_part_val*$part/$partsum;
+  			}  			
+  		}
+  		foreach ($rooms as $room_id => $mate){
+  			$invoice_bal[$mate]=$invoice_bal[$mate]+$unpaid/$members;
+  		}
   	}
-  	print '</pre>';
+  	foreach ($invoice_bal as $mate => $part){
+  		if (!isset($balances[$mate])){
+  			$balances[$mate]=array();
+  		}
+  		$balances[$mate][$invoice_id]=$part;
+  	}
   }
   
   function readBalance($flatmate){
@@ -343,6 +383,8 @@
   	foreach ($data['invoices'] as $invoice){
   		distributeInvoice($invoice,$balances);
   	}
-  	//print $balances[$flatmate['id']];
+  	print '<pre>';
+  	print_r($balances[$flatmate['id']]);
+  	print '</pre>';
   }
   
