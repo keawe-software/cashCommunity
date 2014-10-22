@@ -195,25 +195,28 @@
   	}
   	$room_id=$assoc['room'];
   	$from=$assoc['from'];
-  	if (!isset($data['rooms'][$room_id]['associations'])){
-  		$data['rooms'][$room_id]['associations']=array();
+  	if (!isset($data['associations'])){
+  		$data['associations']=array();
   	}
-  	$data['rooms'][$room_id]['associations'][$from]=$assoc;
-  	saveData($data);  	
+  	$id=count($data['associations']);
+  	$assoc['id']=$id;
+  	$data['associations'][$id]=$assoc;
+  	saveData($data);  	  	
   }
 
   function editAssociation($assoc){
   	global $data;
+  	$id=$assoc['id'];
   	$assoc['from']=dateToDay($assoc['from']);
   	if (isset($assoc['till'])){
   		$assoc['till']=dateToDay($assoc['till']);
   	}  	 
   	$room_id=$assoc['room'];
   	$from=$assoc['from'];
-  	if (!isset($data['rooms'][$room_id]['associations'])){
-  		$data['rooms'][$room_id]['associations']=array();
+  	if (!isset($data['associations'])){
+  		$data['associations']=array();
   	}
-  	$data['rooms'][$room_id]['associations'][$from]=$assoc;
+  	$data['associations'][$id]=$assoc;
   	saveData($data);
   }
   
@@ -263,43 +266,26 @@
     return array('from'=>$from,'till'=>$till);        
   }
   
+  function getAssociationsFor($timespan){
+  	global $data;
+  	$from=$timespan['from'];
+  	$till=$timespan['till'];
+  	foreach ($data['associations'] as $association){
+  	}  	 
+  }
+  
+  function distributeInvoice($invoice,&$balances){
+  	$from=$invoice['from'];
+  	$till=$invoice['till'];
+  	getAssociationsFor($invoice);
+  }
+  
   function readBalance($flatmate){
   	global $data;
-  	$rooms=getRooms($flatmate['id']);
-  	print '<pre>';
-  	print_r($rooms);
-  	print '</pre>';
-  	$balance=0;
-  	$personalInvoices=array();
-  	foreach ($data['invoices'] as $invoice){  		
-  		$dist_id=$invoice['distribution'];
-  		$distribution=$data['distributions'][$dist_id];
-  		$invoiceDays=getNumberOfDays($invoice);
-  		
-  		$parts=array();
-  		$part_sum=0;
-  		foreach ($distribution['rooms'] as $room_id => $part){
-  			$part_sum+=$part; // calculate overall
-  		}
-  	  foreach ($distribution['rooms'] as $room_id => $part){
-  	  	$room_name=$data['rooms'][$room_id]['name'];  	  	
-  			foreach ($rooms as $room){
-  				if ($room['room']==$room_id){
-  					$overlap=getOverlap($invoice,$room);
-  					$overlapDays=getNumberOfDays($overlap);
-  					if ($overlapDays>0){
-  						$percent=100*$part/$part_sum;
-  						$text=t('Of the %invoice_days days of invoice "%description", %name has lived %days days in "%room" which as an allotment of %percent%.');
-  						$keys=array('%name',          '%days',     '%room',  '%percent','%description',            '%invoice_days');
-  						$repl=array($flatmate['name'],$overlapDays,$room_name,$percent, $invoice['description'],$invoiceDays);
-  						print str_replace($keys, $repl, $text).'<br/>'.PHP_EOL;
-							$balance+=($overlapDays/$invoiceDays) * $invoice['value'] * $part / $part_sum;
-							// TODO: nicht bewohnte Zimmer beachten
-  					}
-  				}
-  			}
-  		}
+  	$balances=array();
+  	foreach ($data['invoices'] as $invoice){
+  		distributeInvoice($invoice,$balances);
   	}
-  	print t("total balance:").' '.$balance.'<br/>'.PHP_EOL;
+  	print $balances[$flatmate['id']];
   }
   

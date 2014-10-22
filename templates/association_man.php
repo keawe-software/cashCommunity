@@ -21,7 +21,8 @@
 ?>
 <table>
   <tr>
-    <th><?php print t('From'); ?></th>
+    <th><?php print t('Id'); ?></th>
+  	<th><?php print t('From'); ?></th>
     <th><?php print t('Till'); ?></th>
     <th><?php print t('Flatmate'); ?></th>
     <th><?php print t('Action'); ?></th>
@@ -29,12 +30,18 @@
 
   <?php
   $assoc=array('till'=>0); // initialize in case $room[associations] is empty
-  if (isset($room['associations'])){
-    foreach ($room['associations'] as $from => $assoc) {?>
+  if (isset($data['associations'])){
+    foreach ($data['associations'] as $assoc) {
+      if ($assoc['room'] != $room_id){
+      	continue;
+      }
+    	?>
   <form action="." method="POST">
+  <input type="hidden" name="association[id]" value="<?php print $assoc['id']; ?>"/>
+  <input type="hidden" name="association[room]" value="<?php print $assoc['room']; ?>"/>
   <tr>
-    <td><input type="hidden" name="association[room]" value="<?php print $room['id']; ?>"/>
-        <input type="text" name="association[from]" value="<?php print daysToDate($from); ?>"/></td>
+    <td><?php print $assoc['id']; ?></td>
+	  <td><input type="text" name="association[from]" value="<?php print daysToDate($assoc['from']); ?>"/></td>
     <td><input type="text" name="association[till]" value="<?php print daysToDate($assoc['till']); ?>"/></td>
     <td><?php flatmateSelector($assoc['flatmate']); ?></td>
     <td><button type="submit" name="action" value="edit association"><?php print t('save');?></button>
@@ -46,9 +53,10 @@
   }// if 
   ?>
   <form action="." method="POST">
+  <input type="hidden" name="association[room]" value="<?php print $room['id']; ?>"/>
   <tr>
-    <td><input type="hidden" name="association[room]" value="<?php print $room['id']; ?>"/>
-        <input type="text" name="association[from]" value="<?php print daysToDate(1+$assoc['till']); ?>"/></td>
+    <td>-</td>
+    <td><input type="text" name="association[from]" value="<?php print daysToDate(1+$assoc['till']); ?>"/></td>
     <td><input type="text" name="association[till]"/></td>
     <td><?php flatmateSelector(); ?></td>
     <td><button type="submit" name="action" value="add association"><?php print t('save new');?></button>
