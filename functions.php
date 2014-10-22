@@ -8,6 +8,10 @@
   		}
   	}
   }
+  
+  function today(){
+  	return dateToDay(date('Y-m-d'));
+  }
 
   function calculate(){
     global $data, $flat_size, $base_dist;
@@ -272,29 +276,64 @@
   	$till=$timespan['till'];
   	print "from: $from<br/>\n";
   	print "till: $till<br/>\n";
-  	$associations=array();
-  	foreach ($data['associations'] as $association){  		
-  		if (($from <= $association['from'] && $association['from'] <= $till) ||
-  				($from <= $association['till'] && $association['till'] <= $till) ||
-  				($till <= $association['till'] && $association['from'] <= $from))	{
-  			if ($association['from']<$from){
-  				$association['from']=$from;
-  			}
-  			if ($association['till']>$till){
-  				$association['till']=$till;
-  			}  				
-  			$associations[$association['id']]=$association;
+  	$slices=array();
+  	$slices[$from]=array('till'=>$till,'rooms'=>array());
+  	foreach ($data['associations'] as $association){
+  		$from=$association['from'];
+  		$till=$association['till'];
+  		if ($till==0){
+  			$till=today();
   		}
-  	}
-  	return $associations;
+  		$room=$association['room'];
+  		$mate=$association['flatmate'];
+  		foreach ($slices as $start=>$slice){
+  			$end=$slice['till'];
+  			$checksum=0;
+  			if ($from>$end) continue;
+  			if ($till<$start) continue;
+  			if ($from <= $start && $end <=$till){ // range contains slice < [ ] > 
+  				$slices[$start]['rooms'][$room]=$mate; // add new roommate to current slice
+  				$checksum+=1;
+  			}
+  			if ($start < $from && $till < $end){ // sclice contains range [ < > ]
+  				$slices[$from]=$slice;   // only good, if we copy by value, not by reference!!!
+  				$slices[$till+1]=$slice; // only good, if we copy by value, not by reference!!!
+  				$slices[$start]['till']=$from-1;
+  				$slices[$from]['till']=$till;
+  				$slices[$from]['rooms'][$room]=$mate;
+  				$slices[$till+1]['till']=$slice['till'];
+  				$checksum+=1;
+  			}
+  			if ($start<$from && $end <=$till){ // range starts in sclice [ < } or [ < ] >
+  				$slices[$from]=$slice;
+  				$slices[$from]['rooms'][$room]=$mate;
+  				$slices[$start]['till']=$from-1;
+  				$checksum+=1;
+  			}
+  			if ($from <= $start && $till < $end){ // range ends in slice < [ > ] or { > ]
+  				$slices[$till+1]=$slice;
+  				$slices[$start]['till']=$till; 
+  				$slices[$start]['rooms'][$room]=$mate;
+  				$checksum+=1;
+  			}
+  			if ($checksum>1){
+  				print "checksum = $checksum:\n";
+  				die('something went wrong in getAssociationsFor()');
+  			}
+  		} 
+  	}  	
+  	return $slices;
   }
   
   function distributeInvoice($invoice,&$balances){
-  	$from=$invoice['from'];
-  	$till=$invoice['till'];
   	$associations=getAssociationsFor($invoice);
+  	ksort($associations);
   	print '<pre>';
-  	print_r($associations);
+  	print $invoice['description'].PHP_EOL;
+  	foreach ($associations as $from=>$assoc){
+  		print daysToDate($from).' - '.daysToDate($assoc['till']).PHP_EOL;
+  		print_r($assoc['rooms']);
+  	}
   	print '</pre>';
   }
   
