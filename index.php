@@ -49,6 +49,12 @@ if (isset($_POST['action'])){
 		editInvoice($_POST['invoice']);
 		include 'templates/invoice_man.php';
 				
+	} else if ($action=='edit payment'){
+		$flatmate_id=$_POST['flatmate'];
+		editPayment($flatmate_id,$_POST['payment']);
+		$_POST['flatmate']=$data['flatmates'][$flatmate_id];
+		include 'templates/payment_man.php';
+		
 	} else if ($action=='edit room'){
 		editRoom($_POST['room']);
 		include 'templates/room_man.php';

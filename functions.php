@@ -39,96 +39,55 @@
   	file_put_contents('data.json', json_encode($data));
   }
 
-  function addFlatmate($flatmate){
-    global $data;
-    if (!isset($data['flatmates'])){
-    	$data['flatmates']=array();
-    }
-    $num=count($data['flatmates']);
-    $flatmate['id']=$num;
-    $data['flatmates'][]=$flatmate;
-    saveData($data);
-  }
-
-  function addDistribution($dist){
-    global $data, $warnings;
-    if (empty($dist)){
-      $warnings[]=t('no distribution data given');
-      return;
-    }
-    if (empty($dist['rooms'])){
-      $warnings[]=t('distribution contains no values!');
-      return;
-    }
-    foreach ($dist['rooms'] as $room){
-      if (!is_numeric($room)){
-        $warnings[]=str_replace('%d',$room,t('%d is not a valid value'));
-        return;
-      }
-    }
-    if (!isset($data['distributions'])){
-      $data['distributions']=array();
-    }
-    $dist['id']=count($data['distributions']);
-    $data['distributions'][]=$dist;
-    saveData($data);
-  }
-
   function editDistribution($dist){
   	global $data;
-    $id=$dist['id'];
+  	if (empty($dist)){
+  		$warnings[]=t('no distribution data given');
+  		return;
+  	}
+  	if (empty($dist['rooms'])){
+  		$warnings[]=t('distribution contains no values!');
+  		return;
+  	}
+  	foreach ($dist['rooms'] as $room){
+  		if (!is_numeric($room)){
+  			$warnings[]=str_replace('%d',$room,t('%d is not a valid value'));
+  			return;
+  		}
+  	}
+  	if (!isset($data['distributions'])){
+  		$data['distributions']=array();
+  	}  	 
+  	$id=$dist['id'];
     $data['distributions'][$id]=$dist;
     saveData($data);
   }
   
+  function addDistribution($dist){
+  	global $data, $warnings;
+  	$dist['id']=count($data['distributions']);
+  	editDistribution($dist);
+  }
+  
   function editFlatmate($flatmate){
   	global $data;
+    if (!isset($data['flatmates'])){
+    	$data['flatmates']=array();
+    }
   	$id=$flatmate['id'];
   	$data['flatmates'][$id]=$flatmate;
   	saveData($data);
   }
   
+  function addFlatmate($flatmate){
+    global $data;
+    $flatmate['id']=count($data['flatmates']);
+    editFlatmate($flatmate);
+  }
+
   function editRoom($room){
   	global $data, $warnings;
-  	if (isset($room['size'])){
-  		$room['size']=str_replace(',','.',$room['size']);
-  		if (!is_numeric($room['size'])){
-  			$warnings[]=t('given room size is not a number');
-  			return;
-  		}
-  	} else {
-  		$warnings[]=t('no room size given!');
-  		return;
-  	}
-  	$id=$room['id'];
-  	$data['rooms'][$id]=$room;
-  	saveData($data);
-  }
-  
-  function editInvoice($invoice){
-  	global $data, $warnings;
-  	if (isset($invoice['value'])){
-  		$invoice['value']=str_replace(',','.',$invoice['value']);
-  		if (!is_numeric($invoice['value'])){
-  			$warnings[]=t('given invoice value is not a number');
-  			return;
-  		}
-  	} else {
-  		$warnings[]=t('no invoice value given!');
-  		return;
-  	}
-  	$invoice['from']=dateToDay($invoice['from']);
-  	if (isset($invoice['till'])){
-  		$invoice['till']=dateToDay($invoice['till']);
-  	}
-  	$id=$invoice['id'];
-  	$data['invoices'][$id]=$invoice;
-  	saveData($data);
-  }
-  
-  function addRoom($room){
-  	global $data, $warnings;
-  	if (isset($room['size'])){
+    if (isset($room['size'])){
   		$room['size']=str_replace(',','.',$room['size']);
   		if (!is_numeric($room['size'])){
   			$warnings[]=t('given room size is not a number');
@@ -141,15 +100,20 @@
   	if (!isset($data['rooms'])){
   		$data['rooms']=array();
   	}
-  	$num=count($data['rooms']);
-  	$room['id']=$num;
-  	$data['rooms'][]=$room;
+		$id=$room['id'];
+  	$data['rooms'][$id]=$room;
   	saveData($data);
   }
   
-  function addInvoice($invoice){
+	function addRoom($room){
+  	global $data;  	
+  	$room['id']=count($data['rooms']);
+  	editRoom($room);
+  }
+  
+  function editInvoice($invoice){
   	global $data, $warnings;
-  	if (isset($invoice['value'])){
+    	if (isset($invoice['value'])){
   		$invoice['value']=str_replace(',','.',$invoice['value']);
   		if (!is_numeric($invoice['value'])){
   			$warnings[]=t('given invoice value is not a number');
@@ -166,10 +130,16 @@
   	if (isset($invoice['till'])){
   		$invoice['till']=dateToDay($invoice['till']);
   	}  	 
-		$num=count($data['invoices']);
-  	$invoice['id']=$num;
-  	$data['invoices'][]=$invoice;
+  	$id=$invoice['id'];
+  	$data['invoices'][$id]=$invoice;
   	saveData($data);
+  }
+  
+  
+  function addInvoice($invoice){
+  	global $data;		
+  	$invoice['id']=count($data['invoices']);
+  	editInvoice($invoice);
   }
   
   /* convert a date to a day-timestamp */
@@ -187,23 +157,6 @@
   	return date('Y-m-d',$days*$secondsperday);
   }
   
-  function addAssociation($assoc){
-  	global $data;  	  	  	
-  	$assoc['from']=dateToDay($assoc['from']);
-  	if (isset($assoc['till'])){
-  		$assoc['till']=dateToDay($assoc['till']);
-  	}
-  	$room_id=$assoc['room'];
-  	$from=$assoc['from'];
-  	if (!isset($data['associations'])){
-  		$data['associations']=array();
-  	}
-  	$id=count($data['associations']);
-  	$assoc['id']=$id;
-  	$data['associations'][$id]=$assoc;
-  	saveData($data);  	  	
-  }
-
   function editAssociation($assoc){
   	global $data;
   	$id=$assoc['id'];
@@ -218,6 +171,12 @@
   	}
   	$data['associations'][$id]=$assoc;
   	saveData($data);
+  }
+  
+  function addAssociation($assoc){
+  	global $data;  	  	  	
+  	$assoc['id']=count($data['associations']);
+  	editAssociation($assoc);
   }
   
   /* get length of a time span in days, including first and last day (from and till) */
@@ -371,7 +330,7 @@
   	$balance=$balances[$flatmate['id']];
   }
   
-  function addPayment($mate_id,$payment){
+  function editPayment($mate_id,$payment){  	
   	global $data, $warnings;
   	if (!isset($payment['value'])){
   		$warnings[]=t('You can not add a payment without value!');
@@ -381,19 +340,25 @@
   	if (!is_numeric($payment['value'])){
   		$warnings[]=t('given payment value is not a number');
   		return;
-  	}  	 
+  	}
   	if ($payment['value']==0){
   		$warnings[]=t('You must not add payments with zero value!');
   		return;
-  	}  	
+  	}
   	if (!isset($data['payments'])){
   		$data['payments']=array();
   	}
   	if (!isset($data['payments'][$mate_id])){
   		$data['payments'][$mate_id]=array();
   	}
-  	$id=count($data['payments'][$mate_id]);
-  	$payment['id']=$id;
+  	$id=$payment['id'];
   	$data['payments'][$mate_id][$id]=$payment;
   	saveData($data);
+  	
+  }
+  
+  function addPayment($mate_id,$payment){
+  	global $data;
+  	$payment['id']=count($data['payments'][$mate_id]);
+  	editPayment($mate_id, $payment);
   }
