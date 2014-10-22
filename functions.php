@@ -359,10 +359,10 @@
   				if (!isset($invoice_bal[$mate])){
   					$invoice_bal[$mate]=0;
   				}
-  				$invoice_bal[$mate]=$invoice_bal[$mate]+$invoice_part_val*$part/$partsum;
+  				$invoice_bal[$mate]=$invoice_bal[$mate]+$invoice_part*$part/$partsum;
   				$members+=1;
   			} else {
-  				$unpaid+=$invoice_part_val*$part/$partsum;
+  				$unpaid+=$invoice_part*$part/$partsum;
   			}  			
   		}
   		foreach ($rooms as $room_id => $mate){
