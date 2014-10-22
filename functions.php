@@ -370,6 +370,8 @@
   		}
   	}
   	foreach ($invoice_bal as $mate => $part){
+  		if ($part==0) continue;
+  		if ($part<0) die('For some reason, a flatmate has a negative part on an invoice. This should not be the case.');
   		if (!isset($balances[$mate])){
   			$balances[$mate]=array();
   		}
