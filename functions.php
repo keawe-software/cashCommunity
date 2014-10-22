@@ -371,3 +371,28 @@
   	$balance=$balances[$flatmate['id']];
   }
   
+  function addPayment($mate_id,$payment){
+  	global $data, $warnings;
+  	if (!isset($payment['value'])){
+  		$warnings[]=t('You can not add a payment without value!');
+  		return;
+  	}
+  	$payment['value']=str_replace(',','.',$payment['value']);
+  	if (!is_numeric($payment['value'])){
+  		$warnings[]=t('given payment value is not a number');
+  		return;
+  	}  	 
+  	if ($payment['value']==0){
+  		$warnings[]=t('You must not add payments with zero value!');
+  		return;
+  	}  	
+  	if (!isset($data['payments'])){
+  		$data['payments']=array();
+  	}
+  	if (!isset($data['payments'][$mate_id])){
+  		$data['payments'][$mate_id]=array();
+  	}
+  	$id=count($data['payments'][$mate_id]);
+  	$payment['id']=$id;
+  	$data['payments'][$mate_id][$id]=$payment;
+  }

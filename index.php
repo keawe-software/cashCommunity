@@ -22,6 +22,12 @@ if (isset($_POST['action'])){
 		addInvoice($_POST['invoice']);
 		include 'templates/invoice_man.php';
 	
+	} else if ($action=='add payment'){
+		$flatmate_id=$_POST['flatmate'];
+		addPayment($flatmate_id,$_POST['payment']);
+		$_POST['flatmate']=$data['flatmates'][$flatmate_id];
+		include 'templates/payment_man.php';
+		
 	} else if ($action=='add room'){
 		addRoom($_POST['room']);
 		include 'templates/room_man.php';
