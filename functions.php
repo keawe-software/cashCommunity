@@ -395,4 +395,5 @@
   	$id=count($data['payments'][$mate_id]);
   	$payment['id']=$id;
   	$data['payments'][$mate_id][$id]=$payment;
+  	saveData($data);
   }
