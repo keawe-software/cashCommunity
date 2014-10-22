@@ -32,15 +32,21 @@
   <?php
   $assoc=array('till'=>0); // initialize in case $room[associations] is empty
   if (isset($data['associations'])){
+  	$even=false;
     foreach ($data['associations'] as $assoc) {
       if ($assoc['room'] != $room_id){
       	continue;
       }
-    	?>
+    	$even=!$even;
+      ?>
   <form action="." method="POST">
   <input type="hidden" name="association[id]" value="<?php print $assoc['id']; ?>"/>
   <input type="hidden" name="association[room]" value="<?php print $assoc['room']; ?>"/>
-  <tr>
+  <?php if ($even) { ?>
+  <tr class="even">
+	<?php } else { ?>
+  <tr class="odd">
+  <?php } ?>    
     <td><?php print $assoc['id']; ?></td>
 	  <td><input type="text" name="association[from]" value="<?php print daysToDate($assoc['from']); ?>"/></td>
     <td><input type="text" name="association[till]" value="<?php print daysToDate($assoc['till']); ?>"/></td>
@@ -55,7 +61,7 @@
   ?>
   <form action="." method="POST">
   <input type="hidden" name="association[room]" value="<?php print $room['id']; ?>"/>
-  <tr>
+  <tr class="new">
     <td>-</td>
     <td><input type="text" name="association[from]" value="<?php print daysToDate(1+$assoc['till']); ?>"/></td>
     <td><input type="text" name="association[till]"/></td>

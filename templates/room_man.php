@@ -8,10 +8,16 @@
   </tr>
 <?php
 if (isset($data) && isset($data['rooms'])){
+	$even=false;
 foreach ($data['rooms'] as $room){
+	$even=!$even;
 	?>
 	<form action="." method="POST">
-	<tr>
+	<?php if ($even){ ?>
+		<tr class="even">
+	<?php } else { ?>
+	  <tr class="odd">
+	<?php } ?>
 	  <td><input type="hidden" name="room[id]" value="<?php print $room['id'];?>"/><?php print $room['id'];?></td>
 	  <td><input type="text" name="room[name]" value="<?php print $room['name'];?>"/></td>
 		<td><input type="text" name="room[size]" value="<?php print $room['size'];?>"/></td>
@@ -24,14 +30,14 @@ foreach ($data['rooms'] as $room){
 } // if
 ?>
 	<form action="." method="POST">
-	<tr>
+	<tr class="new">
 	  <td></td>
 	  <td><input type="text" name="room[name]"/></td>
 		<td><input type="text" name="room[size]"/></td>
 		<td><button type="submit" name="action" value="add room"><?php print t('save new');?></button></td>
 	</tr>
 	</form>
-  <tr>
+  <tr class="collation">
     <td>-</td>
     <td><?php print t('overall flat size'); ?></td>
     <td><?php print $flat_size; ?></td>

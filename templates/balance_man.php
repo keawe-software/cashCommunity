@@ -20,11 +20,16 @@ print str_replace('%flatmate',$mate_name,t('showing the balances of %flatmate.')
 	
 	<?php
 	$invoice_sum=0; 
+	$even=false;
 	foreach ($balance as $invoice_id => $invoice){
 	  $value=ceil($invoice['part']*$invoice['value']*100)/100;
 	  $invoice_sum+=$value;
-	  ?>
-		<tr>
+	  $even=!$even;
+	  if ($even) { ?>
+    <tr class="even">
+	  <?php } else { ?>
+    <tr class="odd">
+    <?php } ?> 
 			<td><?php print $invoice_id;?></td>
 		  <td><?php print $invoice['description'];?></td>
 		  <td><?php print $invoice['value'];?></td>
@@ -34,20 +39,31 @@ print str_replace('%flatmate',$mate_name,t('showing the balances of %flatmate.')
 	<?php			
 	}	
 	?>
-	<tr>
+	<tr class="sum">
     <td>-</td>
     <td><?php print t('Sum of all invoices');?></td>
     <td>-</td>
     <td>-</td>
 		<td><?php print $invoice_sum;?></td>
 	</tr>
+	<tr>
+    <td>&nbsp;</td>
+    <td></td>
+    <td></td>
+    <td></td>
+		<td></td>
+	</tr>
 	
 		<?php
-	$payment_sum=0; 
+	$payment_sum=0;	 
 	foreach ($data['payments'][$mate_id] as $payment_id => $payment){
 	  $payment_sum+=$payment['value'];
-	  ?>
-		<tr>
+	  $even=!$even;
+	  if ($even) { ?>
+    <tr class="even">
+	  <?php } else { ?>
+    <tr class="odd">
+    <?php } ?> 
 			<td><?php print $payment_id;?></td>
 		  <td><?php print $payment['description'];?></td>
 		  <td><?php print $payment['value'];?></td>
@@ -57,24 +73,36 @@ print str_replace('%flatmate',$mate_name,t('showing the balances of %flatmate.')
 	<?php			
 	}	
 	?>
-	<tr>
+	<tr class="sum">
     <td>-</td>
     <td><?php print t('Sum of all payments');?></td>
     <td>-</td>
     <td>-</td>
 		<td><?php print $payment_sum;?></td>
+	</tr>
+		<tr>
+    <td>&nbsp;</td>
+    <td></td>
+    <td></td>
+    <td></td>
+		<td></td>
 	</tr>	
-	<tr>
+	<?php $total=$payment_sum-$invoice_sum; 
+	  if ($total>0) { ?>
+		<tr class="deposit">
+		<?php } else {?>
+		<tr class="debit">
+		<?php } ?>
     <td>-</td>
-    <td><?php $sum=$payment_sum-$invoice_sum;
-    					if ($sum>0) {
+    <td><?php 
+    					if ($total>0) {
     						print t('Deposit');
     					} else {
     					  print t('Debit');
     					}?></td>
     <td>-</td>
     <td>-</td>
-		<td><?php print abs($sum);?></td>
+		<td><?php print abs($total);?></td>
 	</tr>
 	
 </table>

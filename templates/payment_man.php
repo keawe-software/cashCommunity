@@ -20,13 +20,19 @@ print str_replace('%name', $mate_name, t('Showing the payments of %name.'));
 
   <?php
     $mate_id=$_POST['flatmate']['id'];
+    $even=false;
     foreach ($data['payments'][$mate_id] as $id => $payment){
+    	$even=!$even;
     	?>
     	
   <form action="." method="POST">
   <input type="hidden" name="flatmate" value="<?php print $mate_id; ?>"/>
   <input type="hidden" name="payment[id]" value="<?php print $id; ?>"/>
-    <tr>
+  <?php if ($even) { ?>
+  <tr class="even">
+	<?php } else { ?>
+  <tr class="odd">
+  <?php } ?> 
     <td><?php print $id; ?></td>
     <td><input type="text" name="payment[description]" value="<?php print $payment['description']; ?>"/></td>
     <td><input type="text" name="payment[date]" value="<?php print $payment['date']; ?>"/></td>
@@ -41,7 +47,7 @@ print str_replace('%name', $mate_name, t('Showing the payments of %name.'));
   ?>
   <form action="." method="POST">
   <input type="hidden" name="flatmate" value="<?php print $_POST['flatmate']['id']; ?>"/>
-  <tr>
+  <tr class="new">
     <td>-</td>
     <td><input type="text" name="payment[description]" value="<?php print t('Description');?>"/></td>
     <td><input type="text" name="payment[date]" value="<?php print date('Y-m-d');?>"/></td>

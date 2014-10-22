@@ -9,10 +9,16 @@
 
 if (isset($data)){
 	if (isset($data['flatmates'])){
+		$even=false;
 		foreach ($data['flatmates'] as $flatmate){
+			$even=!$even;
 	?>
 	<form action="." method="POST">
-	<tr>
+  <?php if ($even) { ?>
+  <tr class="even">
+	<?php } else { ?>
+  <tr class="odd">
+  <?php } ?> 
 	  <td><input type="hidden" name="flatmate[id]" value="<?php print $flatmate['id'];?>"/><?php print $flatmate['id'];?></td>
 	  <td><input type="text" name="flatmate[name]" value="<?php print $flatmate['name'];?>"/></td>
 		<td><button name="action" value="edit flatmate" type="submit"><?php print t('save')?></button>
@@ -26,8 +32,8 @@ if (isset($data)){
 } // if
 ?>
 	<form action="." method="POST">
-	<tr>
-	  <td></td>
+	<tr class="new">
+	  <td>-</td>
 	  <td><input type="text" name="flatmate[name]"/></td>
 		<td><button type="submit" name="action" value="add flatmate"><?php print t('save new');?></button></td>
 	</tr>

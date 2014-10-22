@@ -9,10 +9,18 @@
   </tr>
   
   <?php
-  if (isset($data['distributions'])) { 
-  	foreach ($data['distributions'] as $distribution) { ?>
+  if (isset($data['distributions'])) {
+  	$even=false; 
+  	foreach ($data['distributions'] as $distribution) {
+  	  $even=!$even;
+  		?>
+
   	<form action="." method="POST">
-  <tr>
+  	<?php if ($even) { ?>
+  	<tr class="even">
+		<?php } else { ?>
+  	<tr class="odd">
+  	<?php } ?> 
     <td><?php print $distribution['id']; ?><input type="hidden" name="distribution[id]" value="<?php print $distribution['id']; ?>"/></td>
   	<td><input type="text" name="distribution[name]" value="<?php print $distribution['name']; ?>"/></td>
     <?php foreach ($data['rooms'] as $room_id => $room) {?>
@@ -30,7 +38,7 @@
   } // if
   ?>
   <form action="." method="POST">
-  <tr>
+  <tr class="new">
     <td>-</td>
   	<td><input type="text" name="distribution[name]" value="<?php print t('Description');?>"/></td>
     <?php foreach ($data['rooms'] as $room_id => $room) {?>

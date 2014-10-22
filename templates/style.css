@@ -3,3 +3,32 @@
 table#dist_man input{
 	width: 100px;
 }
+
+.new{
+  background-color: #00aa00;
+}
+
+.even{
+  background-color: #dddd00;
+}
+
+.sum{
+  background-color: yellow;
+  font-weight: bold;
+}
+
+.deposit{
+  background-color: lime;
+  font-weight: bold;
+}
+
+.debit{
+  background-color: orange;
+  font-weight: bold;
+}
+
+input{
+  border: 0 none;
+  background-color: transparent;
+}
+

@@ -34,9 +34,16 @@
   
   <?php 
   	if (isset($data['invoices'])){
-      foreach ($data['invoices'] as $invoice){?>
+  		$even=false;
+      foreach ($data['invoices'] as $invoice){
+      $even=!$even;
+      ?>      
   <form action="." method="POST">
-  <tr>
+  	<?php if ($even) { ?>
+  	<tr class="even">
+		<?php } else { ?>
+  	<tr class="odd">
+  	<?php } ?> 
     <td><input type="hidden" name="invoice[id]" value="<?php print $invoice['id']; ?>"/><?php print $invoice['id']; ?></td>
     <td><input type="text" name="invoice[description]" value="<?php print $invoice['description']; ?>"/></td>
     <td><input type="text" name="invoice[value]" value="<?php print $invoice['value']; ?>"/></td>
@@ -51,7 +58,7 @@
   ?>
   
   <form action="." method="POST">
-  <tr>
+  <tr class="new">
     <td>-</td>
     <td><input type="text" name="invoice[description]" value="<?php print t('Description'); ?>"/></td>
     <td><input type="text" name="invoice[value]" value="0.00"/></td>
