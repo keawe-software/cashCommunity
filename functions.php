@@ -274,8 +274,6 @@
   	global $data;
   	$from=$timespan['from'];
   	$till=$timespan['till'];
-  	print "from: $from<br/>\n";
-  	print "till: $till<br/>\n";
   	$slices=array();
   	$slices[$from]=array('from'=>$from,'till'=>$till,'rooms'=>array());
   	foreach ($data['associations'] as $association){
@@ -375,18 +373,16 @@
   		if (!isset($balances[$mate])){
   			$balances[$mate]=array();
   		}
-  		$balances[$mate][$invoice_id]=$part;
+  		$balances[$mate][$invoice_id]=array('value'=>$invoice['value'],'description'=>$invoice['description'],'part'=>$part);
   	}
   }
   
   function readBalance($flatmate){
-  	global $data;
+  	global $data, $balance;
   	$balances=array();
   	foreach ($data['invoices'] as $invoice){
   		distributeInvoice($invoice,$balances);
   	}
-  	print '<pre>';
-  	print_r($balances[$flatmate['id']]);
-  	print '</pre>';
+  	$balance=$balances[$flatmate['id']];
   }
   
