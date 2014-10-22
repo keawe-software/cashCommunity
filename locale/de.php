@@ -4,6 +4,7 @@ $locale = array(
 		'Allotment' => 'Anteil',
 		'balance' => 'Konto',
 		'Balance overview' => 'Kontoübersicht',
+		'cashCommunity - Community management by SRSoftware' => 'cashCommunity - WG-Management von SRSoftware',
 		'Date' => 'Datum',		
 		'Debit' => 'Schulden',
 		'Deposit' => 'Guthaben',		
