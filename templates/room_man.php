@@ -1,9 +1,10 @@
+<h2><?php print t('Room manager');?></h2>
 <table>
   <tr>
     <th><?php print t('Id'); ?></th>
     <th><?php print t('Name'); ?></th>
-    <th><?php print t('Size'); ?></th>
-    <th><?php print t('Action'); ?></th>
+    <th><?php print t('Size (m²)'); ?></th>
+    <th><?php print t('Actions'); ?></th>
   </tr>
 <?php
 if (isset($data) && isset($data['rooms'])){
@@ -27,7 +28,7 @@ foreach ($data['rooms'] as $room){
 	  <td></td>
 	  <td><input type="text" name="room[name]"/></td>
 		<td><input type="text" name="room[size]"/></td>
-		<td><button type="submit" name="action" value="add room"><?php print t('save');?></button></td>
+		<td><button type="submit" name="action" value="add room"><?php print t('save new');?></button></td>
 	</tr>
 	</form>
   <tr>

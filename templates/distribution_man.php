@@ -1,11 +1,11 @@
 <table id="dist_man">
   <tr>
     <th><?php print t('Id'); ?></th>
-  	<th><?php print t('Name'); ?></th>
+  	<th><?php print t('Description'); ?></th>
     <?php foreach ($data['rooms'] as $room) {?>
     <th><?php print $room['name']; ?></th>
     <?php } ?>
-    <th><?php print t('Action'); ?></th>
+    <th><?php print t('Actions'); ?></th>
   </tr>
   
   <?php
@@ -32,7 +32,7 @@
   <form action="." method="POST">
   <tr>
     <td>-</td>
-  	<td><input type="text" name="distribution[name]" value="Name"/></td>
+  	<td><input type="text" name="distribution[name]" value="<?php print t('Description');?>"/></td>
     <?php foreach ($data['rooms'] as $room_id => $room) {?>
     <td><input type="text" name="distribution[rooms][<?php print $room_id; ?>]" value="<?php print $base_dist['rooms'][$room_id]; ?>"/></td>
     <?php } ?>

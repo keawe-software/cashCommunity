@@ -1,3 +1,4 @@
+<h2><?php print t('Flatmate manager');?></h2>
 <table>
   <tr>
     <th><?php print t('Id'); ?></th>

@@ -29,7 +29,7 @@
     <th><?php print t('From'); ?></th>
     <th><?php print t('Till'); ?></th>
     <th><?php print t('Distribution'); ?></th>
-    <th><?php print t('Action'); ?></th>
+    <th><?php print t('Actions'); ?></th>
   </tr>
   
   <?php 

@@ -1,3 +1,4 @@
+<h2><?php print t('Payment manager')?></h2>
 <?php
 $mate_id=$_POST['flatmate']['id'];
 $mate_name=$_POST['flatmate']['name'];

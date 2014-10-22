@@ -1,3 +1,4 @@
+<h2><?php print t('Room association manager');?></h2>
 <?php
   $room_id=$_POST['room']['id'];
 	$room=$data['rooms'][$room_id];
@@ -25,7 +26,7 @@
   	<th><?php print t('From'); ?></th>
     <th><?php print t('Till'); ?></th>
     <th><?php print t('Flatmate'); ?></th>
-    <th><?php print t('Action'); ?></th>
+    <th><?php print t('Actions'); ?></th>
   </tr>
 
   <?php
