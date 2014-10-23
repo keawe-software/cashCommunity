@@ -7,5 +7,12 @@
       ?>
     </ul>
     <?php } ?>
+<pre>POST:
+<?php 
+print_r($_POST);
+?>DATA:
+<?php
+print_r($data);
+?></pre>
 </body>
 </html>
