@@ -15,7 +15,7 @@
 
   /* calculates flat size and basic distribution by room sizes */
   function calculate(){
-    global $data, $flat_size, $base_dist;
+    global $data, $flat_size, $base_dist, $warnings;
     if (!isset($data)){
       $warnings[]=t('no data given for flat size calculation');
     } else if (!isset($data['rooms']) || empty($data['rooms'])){
@@ -40,7 +40,7 @@
   }
 
   function editDistribution($dist){
-  	global $data;
+  	global $data, $warnings;
   	if (empty($dist)){
   		$warnings[]=t('no distribution data given');
   		return;
@@ -49,7 +49,9 @@
   		$warnings[]=t('distribution contains no values!');
   		return;
   	}
-  	foreach ($dist['rooms'] as $room){
+  	foreach ($dist['rooms'] as $room_id => $room){
+  		$room=str_replace(',','.',$room);
+  		$dist['rooms'][$room_id]=$room;  		  		
   		if (!is_numeric($room)){
   			$warnings[]=str_replace('%d',$room,t('%d is not a valid value'));
   			return;
@@ -64,7 +66,7 @@
   }
   
   function addDistribution($dist){
-  	global $data, $warnings;
+  	global $data;
   	$dist['id']=count($data['distributions']);
   	editDistribution($dist);
   }
@@ -317,7 +319,7 @@
   		if (!isset($balances[$mate])){
   			$balances[$mate]=array();
   		}
-  		$balances[$mate][$invoice_id]=array('value'=>$invoice['value'],'description'=>$invoice['description'],'part'=>$part);
+  		$balances[$mate][$invoice_id]=array('value'=>$invoice['value'],'description'=>$invoice['description'],'part'=>$part,'date'=>daysToDate($invoice['from']));
   	}
   }
   

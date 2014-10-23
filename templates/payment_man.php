@@ -17,11 +17,30 @@ print str_replace('%name', $mate_name, t('Showing the payments of %name.'));
     <th><?php print t('Value');?></th>
     <th><?php print t('Actions');?></th>
   </tr>
-
   <?php
     $mate_id=$_POST['flatmate']['id'];
     $even=false;
-    foreach ($data['payments'][$mate_id] as $id => $payment){
+    $payment=array();
+    $payment['date']=date('Y-m-d');
+    $payments=array_reverse($data['payments'][$mate_id],true);
+    if (!empty($payments)){
+			$payment=reset($payments);
+		}
+    ?>
+    
+  <form action="." method="POST">
+  	<input type="hidden" name="flatmate" value="<?php print $_POST['flatmate']['id']; ?>"/>
+  		<tr class="new">
+    		<td>-</td>
+    		<td><input type="text" name="payment[description]" value="<?php print t('Description');?>"/></td>
+    		<td><input type="text" name="payment[date]" value="<?php print $payment['date'];?>"/></td>
+    		<td><input type="text" name="payment[value]" value="0.00"/></td>
+    		<td><button type="submit" name="action" value="add payment"><?php print t('save new');?></buton></td>
+  		</tr>
+  	</form>
+    
+    <?php
+    foreach ($payments as $id => $payment){
     	$even=!$even;
     	?>
     	
@@ -45,14 +64,5 @@ print str_replace('%name', $mate_name, t('Showing the payments of %name.'));
     	<?php
     }
   ?>
-  <form action="." method="POST">
-  <input type="hidden" name="flatmate" value="<?php print $_POST['flatmate']['id']; ?>"/>
-  <tr class="new">
-    <td>-</td>
-    <td><input type="text" name="payment[description]" value="<?php print t('Description');?>"/></td>
-    <td><input type="text" name="payment[date]" value="<?php print date('Y-m-d');?>"/></td>
-    <td><input type="text" name="payment[value]" value="0.00"/></td>
-    <td><button type="submit" name="action" value="add payment"><?php print t('save new');?></buton></td>
-  </tr>
-  </form>
+
 </table>
