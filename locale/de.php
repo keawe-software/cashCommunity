@@ -1,6 +1,8 @@
 <?php
 $locale = array(
 		'Actions' => 'Aktionen',
+		'add distribution' => 'Aufschlüsselung hinzufügen',
+		'add invoice' => 'Rechnung hinzufügen',
 		'Allotment' => 'Anteil',
 		'balance' => 'Konto',
 		'Balance overview' => 'Kontoübersicht',
@@ -11,6 +13,7 @@ $locale = array(
 		'Description' => 'Beschreibung',
 		'Distribution' => 'Aufschlüsselung',
 		'editing the assiciations of %name' => 'Bearbeiten der Zuordnung von %name',
+		'edit invoice' => 'Rechung bearbeiten',
 		'Flatmate' => 'Mitbewohner',
 		'Flatmate manager' => 'Mitbewohner-Verwaltung',
 		'From' => 'von',		

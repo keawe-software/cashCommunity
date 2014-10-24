@@ -29,7 +29,7 @@
     	print $distribution['rooms'][$room_id];
 		} else {
   		print '0.0';
-		}?>"/>%</td>
+		}?>"/></td>
     <?php } ?>
     <td><button type="submit" name="action" value="edit distribution"><?php print t('save'); ?></button></td>
   </tr>  
