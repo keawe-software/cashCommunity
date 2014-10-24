@@ -339,7 +339,11 @@
   	foreach ($data['invoices'] as $invoice){
   		distributeInvoice($invoice,$balances);
   	}
-  	$balance=$balances[$flatmate['id']];
+  	if (isset($flatmate['id']) && isset($balances[$flatmate['id']])){
+  		$balance=$balances[$flatmate['id']];
+  	} else {
+  		$balance=array();
+  	}
   }
   
   function editPayment($mate_id,$payment){  	
