@@ -29,8 +29,8 @@ print str_replace('%name', $mate_name, t('Showing the payments of %name.'));
     ?>
     
   <form action="." method="POST">
-  	<input type="hidden" name="flatmate[id]" value="<?php print $_POST['flatmate']['id']; ?>"/>
-   	<input type="hidden" name="flatmate[name]" value="<?php print $_POST['flatmate']['name']; ?>"/>
+  	<input type="hidden" name="flatmate[id]" value="<?php print $mate_id; ?>"/>
+   	<input type="hidden" name="flatmate[name]" value="<?php print $mate_name; ?>"/>
    		<tr class="new">
     		<td>-</td>
     		<td><input type="text" name="payment[description]" value="<?php print t('Description');?>"/></td>
@@ -46,8 +46,9 @@ print str_replace('%name', $mate_name, t('Showing the payments of %name.'));
     	?>
     	
   <form action="." method="POST">
-  <input type="hidden" name="flatmate" value="<?php print $mate_id; ?>"/>
-  <input type="hidden" name="payment[id]" value="<?php print $id; ?>"/>
+  	<input type="hidden" name="flatmate[id]" value="<?php print $mate_id; ?>"/>
+   	<input type="hidden" name="flatmate[name]" value="<?php print $mate_name; ?>"/>
+    <input type="hidden" name="payment[id]" value="<?php print $id; ?>"/>
   <?php if ($even) { ?>
   <tr class="even">
 	<?php } else { ?>
