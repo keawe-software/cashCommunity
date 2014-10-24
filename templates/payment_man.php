@@ -21,7 +21,7 @@ print str_replace('%name', $mate_name, t('Showing the payments of %name.'));
     $mate_id=$_POST['flatmate']['id'];
     $even=false;
     $payment=array();
-    $payment['date']=date('Y-m-d');
+    $payment['date']=today();
     $payments=array_reverse($data['payments'][$mate_id],true);
     if (!empty($payments)){
 			$payment=reset($payments);
@@ -34,7 +34,7 @@ print str_replace('%name', $mate_name, t('Showing the payments of %name.'));
    		<tr class="new">
     		<td>-</td>
     		<td><input type="text" name="payment[description]" value="<?php print t('Description');?>"/></td>
-    		<td><input type="text" name="payment[date]" value="<?php print $payment['date'];?>"/></td>
+    		<td><input type="text" name="payment[date]" value="<?php print daysToDate($payment['date']);?>"/></td>
     		<td><input type="text" name="payment[value]" value="0.00"/></td>
     		<td><button type="submit" name="action" value="add payment"><?php print t('save new');?></buton></td>
   		</tr>
@@ -56,7 +56,7 @@ print str_replace('%name', $mate_name, t('Showing the payments of %name.'));
   <?php } ?> 
     <td><?php print $id; ?></td>
     <td><input type="text" name="payment[description]" value="<?php print $payment['description']; ?>"/></td>
-    <td><input type="text" name="payment[date]" value="<?php print $payment['date']; ?>"/></td>
+    <td><input type="text" name="payment[date]" value="<?php print daysToDate($payment['date']); ?>"/></td>
     <td><input type="text" name="payment[value]" value="<?php print $payment['value'];?>"/></td>
     <td><button type="submit" name="action" value="edit payment"><?php print t('save');?></buton></td>
   </tr>

@@ -357,6 +357,9 @@
   		$warnings[]=t('You must not add payments with zero value!');
   		return;
   	}
+  	if (isset($payment['date'])){
+  		$payment['date']=dateToDay($payment['date']);
+  	}
   	if (!isset($data['payments'])){
   		$data['payments']=array();
   	}
