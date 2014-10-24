@@ -128,10 +128,20 @@
   	if (!isset($data['invoices'])){
   		$data['invoices']=array();
   	}
-  	$invoice['from']=dateToDay($invoice['from']);
-  	if (isset($invoice['till'])){
-  		$invoice['till']=dateToDay($invoice['till']);
-  	}  	 
+  	if (isset($invoice['from']) && !empty($invoice['from'])){  		
+  		$invoice['from']=dateToDay($invoice['from']);
+  		if (isset($invoice['till'])){
+  			$invoice['till']=dateToDay($invoice['till']);
+  		}  		
+  	} else {
+  		if (isset($invoice['till']) && !empty($invoice['till'])){
+  			$invoice['from']=dateToDay(substr($invoice['till'], 0,7));
+				$oneMonthLater=$invoice['from']+31;						
+				$invoice['till']=dateToDay(substr(daysToDate($oneMonthLater),0,7))-1;
+  		} else {
+  			$warnings[]=t('No date given for invoice!');
+  		}  		
+  	}
   	$id=$invoice['id'];
   	$data['invoices'][$id]=$invoice;
   	saveData($data);
