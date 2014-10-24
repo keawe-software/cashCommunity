@@ -22,9 +22,13 @@ print str_replace('%name', $mate_name, t('Showing the payments of %name.'));
     $even=false;
     $payment=array();
     $payment['date']=today();
-    $payments=array_reverse($data['payments'][$mate_id],true);
-    if (!empty($payments)){
-			$payment=reset($payments);
+    if (isset($data['payments'][$mate_id])){
+    	$payments=array_reverse($data['payments'][$mate_id],true);
+    	if (!empty($payments)){
+				$payment=reset($payments);
+			}
+		} else {
+			$payments=array();
 		}
     ?>
     

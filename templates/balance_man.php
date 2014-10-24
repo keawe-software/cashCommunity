@@ -58,7 +58,8 @@ print str_replace('%flatmate',$mate_name,t('showing the balances of %flatmate.')
 	</tr>
 	
 		<?php
-	$payment_sum=0;	 
+	$payment_sum=0;
+	if (isset($data['payments'][$mate_id]))	 {
 	foreach ($data['payments'][$mate_id] as $payment_id => $payment){
 	  $payment_sum+=$payment['value'];
 	  $even=!$even;
@@ -75,7 +76,7 @@ print str_replace('%flatmate',$mate_name,t('showing the balances of %flatmate.')
 			<td><?php print $payment['value']; ?></td>
 		</tr>
 	<?php			
-	}	
+	}	}
 	?>
 	<tr class="sum">
     <td>-</td>
