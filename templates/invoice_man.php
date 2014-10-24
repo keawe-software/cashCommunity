@@ -24,11 +24,11 @@
 <table>
   <tr>
     <th><?php print t('Id'); ?></th>
-    <th><?php print t('Description'); ?></th>
-    <th><?php print t('Value'); ?></th>
     <th><?php print t('From'); ?></th>
     <th><?php print t('Till'); ?></th>
+    <th><?php print t('Description'); ?></th>
     <th><?php print t('Distribution'); ?></th>
+    <th><?php print t('Value'); ?></th>
     <th><?php print t('Actions'); ?></th>
   </tr>
 
@@ -48,11 +48,11 @@
     <form action="." method="POST">
   		<tr class="new">
     		<td>-</td>
-    		<td><input type="text" name="invoice[description]" value="<?php print t('Description'); ?>"/></td>
-    		<td><input type="text" name="invoice[value]" value="0.00"/></td>
     		<td><input type="text" name="invoice[from]" value="<?php print $from; ?>"/></td>
     		<td><input type="text" name="invoice[till]" value="<?php print $till; ?>"/></td>
+    		<td><input type="text" name="invoice[description]" value="<?php print t('Description'); ?>"/></td>
     		<td><?php distributionSelector(); ?></td>
+    		<td><input type="text" name="invoice[value]" value="0.00"/></td>
     		<td><button type="submit" name="action" value="add invoice"><?php print t('save new');?></button></td>
   		</tr>
   	</form>
@@ -70,11 +70,11 @@
   	<tr class="odd">
   	<?php } ?> 
     <td><input type="hidden" name="invoice[id]" value="<?php print $invoice['id']; ?>"/><?php print $invoice['id']; ?></td>
-    <td><input type="text" name="invoice[description]" value="<?php print $invoice['description']; ?>"/></td>
-    <td><input type="text" name="invoice[value]" value="<?php print $invoice['value']; ?>"/></td>
     <td><input type="text" name="invoice[from]" value="<?php print daysToDate($invoice['from']); ?>"/></td>
     <td><input type="text" name="invoice[till]" value="<?php print daysToDate($invoice['till']); ?>"/></td>
+    <td><input type="text" name="invoice[description]" value="<?php print $invoice['description']; ?>"/></td>
     <td><?php distributionSelector($invoice['distribution']); ?></td>
+    <td><input type="text" name="invoice[value]" value="<?php print $invoice['value']; ?>"/></td>
     <td><button type="submit" name="action" value="edit invoice"><?php print t('save');?></button></td>
   </tr>
   </form>

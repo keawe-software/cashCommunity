@@ -2,7 +2,7 @@
 <?php
 $mate_id=$_POST['flatmate']['id'];
 $mate_name=$_POST['flatmate']['name'];
-print str_replace('%flatmate',$mate_name,t('showing the balances of %flatmate.'));
+print str_replace('%name',$mate_name,t('showing the balances of %name.'));
 ?>
 <form action="." method="POST">
   <input type="hidden" name="flatmate[id]" value="<?php print $mate_id; ?>" />

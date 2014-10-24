@@ -31,6 +31,7 @@ $locale = array(
 		'save new' => 'neu speichern',
 		'show balance' => 'zeige Konto',
 		'show payments' => 'zeige Zahlungen',
+		'showing the balances of %name.' => 'Zeige das Konto von %name',
 		'Showing the payments of %name.' => 'Zeige die Zahlungen von %name',
 		'Size (m²)' => 'Größe (m²)',
 		'Sum of all invoices' => 'Summe aller Rechnungen',
