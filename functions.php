@@ -374,6 +374,9 @@
   
   function addPayment($mate_id,$payment){
   	global $data;
+  	if (!isset($data['payments'][$mate_id])){
+  		$data['payments'][$mate_id]=array();
+  	}
   	$payment['id']=count($data['payments'][$mate_id]);
   	editPayment($mate_id, $payment);
   }
