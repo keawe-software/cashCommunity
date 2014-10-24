@@ -69,7 +69,7 @@ print str_replace('%name',$mate_name,t('showing the balances of %name.'));
     <tr class="odd">
     <?php } ?> 
 			<td><?php print $payment_id;?></td>
-			<td><?php print $payment['date'];?></td>			
+			<td><?php print daysToDate($payment['date']);?></td>			
 		  <td><?php print $payment['description'];?></td>
 		  <td><?php print $payment['value'];?></td>
 		  <td>100.00%</td>
