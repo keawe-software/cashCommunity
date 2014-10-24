@@ -31,11 +31,36 @@
     <th><?php print t('Distribution'); ?></th>
     <th><?php print t('Actions'); ?></th>
   </tr>
+
+
+  <?php
+  	$from=date('Y-m-d');
+  	$till=$from;  
+  	if (isset($data['invoices'])){
+  		$invoices=array_reverse($data['invoices'],true);
+  		if (!empty($invoices)){
+				$invoice=reset($invoices);
+				$from=daysToDate($invoice['from']);
+				$till=daysToDate($invoice['till']);
+			}
+    }				
+  		?>
+    <form action="." method="POST">
+  		<tr class="new">
+    		<td>-</td>
+    		<td><input type="text" name="invoice[description]" value="<?php print t('Description'); ?>"/></td>
+    		<td><input type="text" name="invoice[value]" value="0.00"/></td>
+    		<td><input type="text" name="invoice[from]" value="<?php print $from; ?>"/></td>
+    		<td><input type="text" name="invoice[till]" value="<?php print $till; ?>"/></td>
+    		<td><?php distributionSelector(); ?></td>
+    		<td><button type="submit" name="action" value="add invoice"><?php print t('save new');?></button></td>
+  		</tr>
+  	</form>
   
   <?php 
   	if (isset($data['invoices'])){
-  		$even=false;
-      foreach ($data['invoices'] as $invoice){
+			$even=false;			
+  		foreach ($invoices as $invoice){
       $even=!$even;
       ?>      
   <form action="." method="POST">
@@ -57,15 +82,4 @@
 		} // if
   ?>
   
-  <form action="." method="POST">
-  <tr class="new">
-    <td>-</td>
-    <td><input type="text" name="invoice[description]" value="<?php print t('Description'); ?>"/></td>
-    <td><input type="text" name="invoice[value]" value="0.00"/></td>
-    <td><input type="text" name="invoice[from]" value="<?php print date('Y-m-d'); ?>"/></td>
-    <td><input type="text" name="invoice[till]" value="<?php print date('Y-m-d'); ?>"/></td>
-    <td><?php distributionSelector(); ?></td>
-    <td><button type="submit" name="action" value="add invoice"><?php print t('save new');?></button></td>
-  </tr>
-  </form>
 </table>
