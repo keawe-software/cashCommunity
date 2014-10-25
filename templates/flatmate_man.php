@@ -1,3 +1,4 @@
+<div class="management">
 <h2><?php print t('Flatmate manager');?></h2>
 <table>
   <tr>
@@ -39,3 +40,4 @@ if (isset($data)){
 	</tr>
 	</form>
 </table>
+</div>

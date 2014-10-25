@@ -1,3 +1,4 @@
+<div class="management">
 <table id="dist_man">
   <tr>
     <th><?php print t('Id'); ?></th>
@@ -48,3 +49,4 @@
   </tr>  
   </form>
 </table>
+</div>

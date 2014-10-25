@@ -27,7 +27,7 @@ table#dist_man input{
   font-weight: bold;
 }
 
-input{
+.management input{
   border: 0 none;
   background-color: transparent;
 }

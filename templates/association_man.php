@@ -1,3 +1,4 @@
+<div class="management">
 <h2><?php print t('Room association manager');?></h2>
 <?php
   $room_id=$_POST['room']['id'];
@@ -70,3 +71,4 @@
   </tr>
   </form>  
 </table>
+</div>

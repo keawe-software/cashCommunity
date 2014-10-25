@@ -1,3 +1,4 @@
+<div class="management">
 <h2><?php print t('Payment manager')?></h2>
 <?php
 $mate_id=$_POST['flatmate']['id'];
@@ -72,3 +73,4 @@ print str_replace('%name', $mate_name, t('Showing the payments of %name.'));
   ?>
 
 </table>
+</div>

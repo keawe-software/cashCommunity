@@ -3,8 +3,12 @@
 include 'init.php';
 
 include 'templates/head.php';
-include 'templates/overview.php';
+
+	
 if (isset($_POST['action'])){
+	if (isset($_SESSION['user'])){
+	  include 'templates/overview.php';
+	}
 	$action=$_POST['action'];
 	if ($action=='add association'){
 		addAssociation($_POST['association']);
@@ -73,6 +77,18 @@ if (isset($_POST['action'])){
 	} else if ($action=='manage rooms'){
 		include 'templates/room_man.php';
 			
+	} else if ($action=='register'){
+		if (isset($_POST['newuser'])){
+			if (addUser($_POST['newuser'])){
+				include 'templates/overview.php';
+				include 'templates/registered.php';				
+			} else {
+				$_POST['username']=$_POST['newuser']['nick'];
+				include 'templates/register.php';
+			}
+		} else {
+			include 'templates/register.php';
+		}
 	} else if ($action=='show balance'){
 		readBalance($_POST['flatmate']);
 		include 'templates/balance_man.php';
@@ -81,7 +97,12 @@ if (isset($_POST['action'])){
 		include 'templates/payment_man.php';
 	
 	}
-} 	
-
+} else { // no action
+	if (isset($_SESSION['user'])){
+		include 'templates/overview.php';
+	} else {	
+		include 'templates/login_man.php';
+	}
+}
 
 include 'templates/foot.php';

@@ -1,3 +1,4 @@
+<div class="management">
 <?php 
   function distributionSelector($dist_id=null){
   	global $data;
@@ -83,3 +84,4 @@
   ?>
   
 </table>
+</div>

@@ -1,3 +1,4 @@
+<div class="management">
 <h2><?php print t('Room manager');?></h2>
 <table>
   <tr>
@@ -44,3 +45,4 @@ foreach ($data['rooms'] as $room){
     <td></td>
   </tr>
 </table>
+</div>

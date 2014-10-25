@@ -1,8 +1,21 @@
 <?php
+
+	function getJson(){
+		global $db;
+		if (!isset($_SESSION['user'])){
+			die('Error: getJson called for unknown user!');
+		}
+		$sql="SELECT data FROM data WHERE username=:username";
+		$stm=$db->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+		$stm->execute(array(':username'=>$_SESSION['user']));
+		$results=$stm->fetchAll();
+		return $results[0]['data'];
+	}
+
   function getData(){ // TODO: dies is nun typ-spezifisch und muss nochmal angepasst werden!
   	global $data;
   	if (!isset($data)){
-  		$data=json_decode(file_get_contents('data.json'),true);
+  		$data=json_decode(getJson(),true);
   		if (empty($data)){
   			$data=array();
   		}
@@ -383,4 +396,60 @@
   	}
   	$payment['id']=count($data['payments'][$mate_id]);
   	editPayment($mate_id, $payment);
+  }
+  
+  /* assures the existence of all required database tables */
+  function checkTables($db){
+  	$results=$db->query("SHOW TABLES LIKE 'data'");
+  	if (!$results){
+  		die(print_r($dbh->errorInfo(), TRUE));
+  	}
+  	if ($results->rowCount()<1){
+  		//      echo "table doesn't exist\n";
+  		$sql = 'CREATE TABLE data (username VARCHAR(100) PRIMARY KEY, password VARCHAR(100), data TEXT);';
+  		$db->exec($sql);
+  		//    } else {
+  		//      echo "table exists\n";
+  	}
+  }
+  
+  /* this was written using http://code.tutsplus.com/tutorials/why-you-should-be-using-phps-pdo-for-database-access--net-12059 */
+  function connectToDb($host,$database,$user,$pass){
+  	try {
+  		$db = new PDO("mysql:host=$host;dbname=$database", $user, $pass, array(PDO::ATTR_PERSISTENT => true)); // open db connection and cache it
+  		//      print "databse opened\n";
+  		return $db;
+  	} catch (PDOException $pdoex) {
+  		die($pdoex->getMessage());
+  	}
+  }
+  
+  function addUser($user){
+  	global $warnings, $db;
+  	$minlen=6;
+  	$nick=trim($user['nick']);
+		$pass1=trim($user['password']);
+		$pass2=trim($user['password2']);
+		if (strlen($pass1)<$minlen){
+			$warnings[]=str_replace('%length', $minlen, t('Password must be at least %length characters long!'));
+			return false;
+		}
+		if ($pass1!=$pass2){
+			$warnings[]=t('passwords do not match!');
+			return false;
+		}
+		$sql="SELECT count(*) FROM data WHERE username=:username";
+    $stm=$db->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+    $stm->execute(array(':username'=>$nick));
+    $results=$stm->fetchAll();
+    if ($results[0][0]>0){
+    	$warnings[]=str_replace('%username', $nick, t('Username %username already registerd!'));
+    	return false;
+    }
+    $pass=sha1($pass1);
+    $sql="INSERT INTO data (username,password) VALUES (:username,:password)";		
+    $stm=$db->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+    $stm->execute(array(':username'=>$nick,':password'=>$pass));
+    $_SESSION['user']=$nick;
+    return true;
   }
