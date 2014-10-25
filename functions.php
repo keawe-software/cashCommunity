@@ -49,7 +49,14 @@
   }
 
   function saveData($data){
-  	file_put_contents('data.json', json_encode($data));
+  	$json=json_encode($data);
+  	global $db;
+  	if (!isset($_SESSION['user'])){
+  		die('Error: saveData called for unknown user!');
+  	}
+  	$sql="UPDATE data DET data=:json WHERE username=:username";
+  	$stm=$db->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+  	$stm->execute(array(':data'=>$json,':username'=>$_SESSION['user']));
   }
 
   function editDistribution($dist){
