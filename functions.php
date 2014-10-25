@@ -1,5 +1,5 @@
 <?php
-
+	
 	function getJson(){
 		global $db;
 		if (!isset($_SESSION['user'])){
@@ -49,14 +49,19 @@
   }
 
   function saveData($data){
+  	global $warnings;
+  	if ($_SESSION['expired']){
+  		$warnings[]=t('Your test period expired. You can still view your data, but any changes will be lost immediately. Please purchase a license to continue using all features');
+  		return;
+  	}
   	$json=json_encode($data);
   	global $db;
   	if (!isset($_SESSION['user'])){
   		die('Error: saveData called for unknown user!');
   	}
-  	$sql="UPDATE data DET data=:json WHERE username=:username";
+  	$sql="UPDATE data SET data=:json WHERE username=:username";
   	$stm=$db->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-  	$stm->execute(array(':data'=>$json,':username'=>$_SESSION['user']));
+  	$stm->execute(array(':json'=>$json,':username'=>$_SESSION['user']));
   }
 
   function editDistribution($dist){
@@ -419,7 +424,7 @@
   	}
   	if ($results->rowCount()<1){
   		//      echo "table doesn't exist\n";
-  		$sql = 'CREATE TABLE data (username VARCHAR(100) PRIMARY KEY, password VARCHAR(100), data TEXT);';
+  		$sql = 'CREATE TABLE data (username VARCHAR(100) PRIMARY KEY, password VARCHAR(100), validity INT NOT NULL, data TEXT);';
   		$db->exec($sql);
   		//    } else {
   		//      echo "table exists\n";
@@ -438,7 +443,7 @@
   }
   
   function addUser($user){
-  	global $warnings, $db;
+  	global $warnings, $db, $testdays;
   	$minlen=6;
   	$nick=trim($user['nick']);
 		$pass1=trim($user['password']);
@@ -456,11 +461,12 @@
     $stm->execute(array(':username'=>$nick));
     $results=$stm->fetchAll();
     if ($results[0][0]>0){
-    	$warnings[]=str_replace('%username', $nick, t('Username %username already registerd!'));
+    	$warnings[]=str_replace('%username', $nick, t('Username <strong>%username</strong> already registerd!'));
     	return false;
     }
     $pass=sha1($pass1);
-    $sql="INSERT INTO data (username,password) VALUES (:username,:password)";		
+    $validity=today()+$testdays;
+    $sql="INSERT INTO data (username,password,validity) VALUES (:username,:password,$validity)";		
     $stm=$db->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
     $stm->execute(array(':username'=>$nick,':password'=>$pass));
     $_SESSION['user']=$nick;
