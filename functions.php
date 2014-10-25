@@ -128,7 +128,10 @@
   }
   
 	function addRoom($room){
-  	global $data;  	
+  	global $data;
+  	if (!isset($data['rooms'])){
+  		$data['rooms']=array();
+  	}  	
   	$room['id']=count($data['rooms']);
   	editRoom($room);
   }
@@ -169,7 +172,10 @@
   
   
   function addInvoice($invoice){
-  	global $data;		
+  	global $data;
+  	if (!isset($data['invoices'])){
+  		$data['invoices']=array();
+  	}		
   	$invoice['id']=count($data['invoices']);
   	editInvoice($invoice);
   }
