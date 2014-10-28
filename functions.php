@@ -108,6 +108,9 @@
   
   function addFlatmate($flatmate){
     global $data;
+    if (!isset($data['flatmates'])){
+    	$data['flatmates']=array();
+    }
     $flatmate['id']=count($data['flatmates']);
     editFlatmate($flatmate);
   }
