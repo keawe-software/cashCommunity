@@ -3,12 +3,11 @@
 	session_start();
   $secondsperday=60*60*24;
   $testdays=14;
+  $warnings=array();
   
   require 'config/db.php';  
   require 'locale/de.php';
   include 'functions.php';
-  
-  $warnings=array();
   
   $db = connectToDb($host,$database,$user,$pass);
   checkTables($db);
