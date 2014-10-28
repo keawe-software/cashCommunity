@@ -38,6 +38,7 @@ $locale = array(
 		'overall flat size'=>'Gesamtgröße der Wohnung',
 		'payments' => 'Zahlungen',
 		'Payment manager' => 'Zahlungsverwaltung',
+		'please add a distribution first!','Bitte erst Verteilung anlegen!',
 		'Proportional value' => 'anteiliger Betrag',		
 		'room association...' => 'Zimmer-Zuordnung...',
 		'Room association manager' => 'Zimmer-Zurodnung-Verwaltung',
