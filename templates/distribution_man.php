@@ -2,9 +2,11 @@
   <tr>
     <th><?php print t('Id'); ?></th>
   	<th><?php print t('Description'); ?></th>
-    <?php foreach ($data['rooms'] as $room) {?>
+    <?php if (isset($data['rooms'])) {
+    	foreach ($data['rooms'] as $room) {?>
     <th><?php print $room['name']; ?></th>
-    <?php } ?>
+    <?php } 
+    } // if ?>
     <th><?php print t('Actions'); ?></th>
   </tr>
   
@@ -41,9 +43,11 @@
   <tr class="new">
     <td>-</td>
   	<td><input type="text" name="distribution[name]" value="<?php print t('Description');?>"/></td>
-    <?php foreach ($data['rooms'] as $room_id => $room) {?>
+    <?php if (isset($data['rooms'])) {
+    	foreach ($data['rooms'] as $room_id => $room) { ?>
     <td><input type="text" name="distribution[rooms][<?php print $room_id; ?>]" value="<?php print $base_dist['rooms'][$room_id]; ?>"/></td>
-    <?php } ?>
+    <?php } 
+    } // if ?>
     <td><button type="submit" name="action" value="add distribution"><?php print t('save new'); ?></button></td>
   </tr>  
   </form>
