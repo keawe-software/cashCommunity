@@ -47,7 +47,6 @@
   
   if (isset($_SESSION['user'])){
   	getData();
-  	calculate();
   }
   
   function t($text){

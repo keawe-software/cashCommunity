@@ -17,6 +17,7 @@ if (isset($_POST['action'])){
 		
 	} else if ($action=='add distribution'){
 		addDistribution($_POST['distribution']);
+		calculate();
 		include 'templates/distribution_man.php';
 		
 	} else 	if ($action=='add flatmate'){
@@ -34,6 +35,7 @@ if (isset($_POST['action'])){
 		
 	} else if ($action=='add room'){
 		addRoom($_POST['room']);
+		calculate();
 		include 'templates/room_man.php';
 		
 	} else if ($action=='edit association'){
@@ -43,6 +45,7 @@ if (isset($_POST['action'])){
 		
 	} else if ($action=='edit distribution'){
 		editDistribution($_POST['distribution']);
+		calculate();
 		include 'templates/distribution_man.php';
 		
 	} else if ($action=='edit flatmate'){
@@ -60,12 +63,14 @@ if (isset($_POST['action'])){
 		
 	} else if ($action=='edit room'){
 		editRoom($_POST['room']);
+		calculate();
 		include 'templates/room_man.php';
 						
 	} else if ($action=='manage associations'){
 		include 'templates/association_man.php';
 
 	} else if ($action=='manage distributions'){
+		calculate();
 		include 'templates/distribution_man.php';
 		
 	} else if ($action=='manage flatmates'){
@@ -75,6 +80,7 @@ if (isset($_POST['action'])){
 		include 'templates/invoice_man.php';
 		
 	} else if ($action=='manage rooms'){
+		calculate();
 		include 'templates/room_man.php';
 			
 	} else if ($action=='register'){
