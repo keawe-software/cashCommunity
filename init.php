@@ -33,8 +33,8 @@
 			if (count($results)==1){
 				if ($results[0]['validity']<today()){
 					$warnings[]=t('Your test period expired. You can still view your data, but any changes will be lost immediately. Please purchase a license to continue using all features');
+					$_SESSION['expired']=1;
 				}
-				$_SESSION['expired']=1;
 				$_SESSION['user']=$_POST['username'];				
 			} else {
 				$warnings[]=t('Invalid username and/or password!');

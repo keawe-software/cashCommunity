@@ -50,7 +50,7 @@
 
   function saveData($data){
   	global $warnings;
-  	if ($_SESSION['expired']){
+  	if (isset($_SESSION['expired'])){
   		$warnings[]=t('Your test period expired. You can still view your data, but any changes will be lost immediately. Please purchase a license to continue using all features');
   		return;
   	}

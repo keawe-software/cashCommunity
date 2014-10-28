@@ -7,7 +7,10 @@
       ?>
     </ul>
     <?php } ?>
-<pre>POST:
+<pre>SESSION:
+<?php 
+print_r($_SESSION);
+?>POST:
 <?php 
 print_r($_POST);
 ?>DATA:
