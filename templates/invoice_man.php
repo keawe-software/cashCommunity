@@ -2,6 +2,7 @@
   function distributionSelector($dist_id=null){
   	global $data;
   	if (!isset($data['distributions'])){
+  		print '<button type="submit" name="action" value="manage distributions">'.t('please add a distribution first!').'</button>';
   		return;
   	}
   	?>
