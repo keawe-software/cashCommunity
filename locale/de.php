@@ -53,5 +53,6 @@ $locale = array(
 		'Sum of all payments' => 'Summe aller Zahlungen',
 		'Till' => 'bis',
 		'Value' => 'Betrag',
+		'Was not able to find database file (data.json)'=>'Konnte Datendatei (data.json) nicht finden',
 		'You can not add a payment without value!'=>'Sie können keine Zahlungen ohne Betrag anlegen!',
 		'You must not add payments with zero value!'=> 'Sie können keine Zahlungen mit Betrag 0 anlegen!');

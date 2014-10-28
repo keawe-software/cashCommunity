@@ -1,7 +1,12 @@
 <?php
   function getData(){ // TODO: dies is nun typ-spezifisch und muss nochmal angepasst werden!
-  	global $data;
+  	global $data, $warnings;
   	if (!isset($data)){
+  		if (!file_exists('data.json')){
+  			$data=array();
+  			$warnings[]=t('Was not able to find database file (data.json)');
+  			return;
+  		}
   		$data=json_decode(file_get_contents('data.json'),true);
   		if (empty($data)){
   			$data=array();

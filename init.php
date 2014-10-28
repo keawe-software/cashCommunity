@@ -1,12 +1,13 @@
 <?php
 
   $secondsperday=60*60*24;
+  $warnings=array();
+  
   require 'locale/de.php';
   include 'functions.php';	
   
   getData();
   calculate();
-  $warnings=array();
   
   function t($text){
 		global $locale;

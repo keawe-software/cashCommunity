@@ -36,3 +36,14 @@ input{
 ul.menu li{
   display: inline;
 }
+
+ul.warnings{
+	position: fixed;
+	border-radius: 5px;
+	top: 0;
+	margin: 2px;
+	padding: 5px;
+	list-style-position: inside;
+	background-color: orange;
+	font-weight: bold;
+}
