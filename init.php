@@ -7,7 +7,6 @@
   include 'functions.php';	
   
   getData();
-  calculate();
   
   function t($text){
 		global $locale;
