@@ -47,3 +47,8 @@ ul.warnings{
 	background-color: orange;
 	font-weight: bold;
 }
+
+.footline{
+	position: fixed;
+	bottom: 0px;
+}
