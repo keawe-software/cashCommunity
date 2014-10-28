@@ -52,6 +52,7 @@ $locale = array(
 		'Size (m²)' => 'Größe (m²)',
 		'Sum of all invoices' => 'Summe aller Rechnungen',
 		'Sum of all payments' => 'Summe aller Zahlungen',
+		'This software is open source. Find the code at GitHub.'=>'Dise Software ist quelloffen. Die Quellen gibt\'s bei Github.',
 		'Till' => 'bis',
 		'Value' => 'Betrag',
 		'Was not able to find database file (data.json)'=>'Konnte Datendatei (data.json) nicht finden',
