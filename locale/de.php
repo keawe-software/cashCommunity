@@ -42,7 +42,7 @@ $locale = array(
 		'password'=>'Passwort',		
 		'payments' => 'Zahlungen',
 		'Payment manager' => 'Zahlungsverwaltung',
-		'please add a distribution first!','Bitte erst Verteilung anlegen!',
+		'please add a distribution first!'=>'Bitte erst Verteilung anlegen!',
 		'Proportional value' => 'anteiliger Betrag',		
 		'register now'=>'jetzt registrieren',
 		'repeat password'=>'Passwort wiederholen',
