@@ -85,6 +85,7 @@ $locale = array(
 		'Sum of all payments' => 'Summe aller Zahlungen',
 		'This allows you to create various distributions for bills invoiced. Each distribution defines how a certain invoice is shared by your flat mates.'=>'Dies erlaubt dir, Verteilungen für Rechnungen zu verwalten. Jede Verteilung definiert, welchen Anteil einer Rechnung jeder deiner Mitbewohner zahlen muss.',
 		'This software is open source. Find the code at GitHub.'=>'Dise Software ist quelloffen. Die Quellen gibt\'s bei Github.',
+		'This software is open source. However, it is not completely free:<br/>For a period of 14 days you can test its features freely. After that time, you will be no longer able to edit any data. To continue editing, you will have to <a href="license.php">purchase a license</a>.'=>'Diese Software ist quelloffen. Dennoch ist sie nicht komplett kostenlos:<br/>Für einen Zeitraum von 14 Tagen kannst du alle Funktionen frei testen. Nach dieser Zeit wirst du keine Daten mehr verändern können. Um dann deine Daten weiter zu bearbeiten, musst du eine <a href="license.php">Lizenz kaufen</a>.',
 		'Till' => 'bis',
 		'To add a new flat mate, enter his/her name in the green field. Then click "save new".'=>'Um einen neuen Mitbewohner hinzuzufügen, gib seinen/ihren Namen in das grüne Feld ein. Klicke dann "neu speichern".',
 		'To add a new invoice, start by entering a description in the green field above.'=>'Um eine neue Rechnung hinzuzufügen, gib zunächst eine Beschreibung in das grüne Feld oben ein.',
