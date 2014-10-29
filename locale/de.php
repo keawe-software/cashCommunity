@@ -96,6 +96,7 @@ $locale = array(
 		'To add a new flat mate, enter his/her name in the green field. Then click "save new".'=>'Um einen neuen Mitbewohner hinzuzufügen, gib seinen/ihren Namen in das grüne Feld ein. Klicke dann "neu speichern".',
 		'To add a new invoice, start by entering a description in the green field above.'=>'Um eine neue Rechnung hinzuzufügen, gib zunächst eine Beschreibung in das grüne Feld oben ein.',
 		'To apply for a license, type your mail address and press the button below!'=>'Gib unten deine Emailadresse ein und drücke den Knopf, um eine Lizenz zu beantragen!',
+		'To get a license, you first have to <a href=".">register and log in</a>.'=>'Um eine Lizenz zu erhalten, musst du dich zunächst <a href=".">registrieren und einloggen</a>.',
 		'user name'=>'Benutzername',
 		'Username <strong>%username</strong> already registerd!'=>'Benutzername <strong>%username</strong> schon vergeben!',
 		'Value' => 'Betrag',

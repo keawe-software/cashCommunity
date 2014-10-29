@@ -10,6 +10,8 @@ print t('The license to use this software costs 10€ for 365 days. That is less
 		<button type="submit" name="action" value="send account mail"><?php print t('mail me the account data!'); ?></button>
 	</form>
 <?
+  } else {
+		print ' '.t('To get a license, you first have to <a href=".">register and log in</a>.');
   }
 
 include 'templates/foot.php'; 
