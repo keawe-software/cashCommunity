@@ -26,7 +26,7 @@
   	<tr class="odd">
   	<?php } ?> 
     <td><?php print $distribution['id']; ?><input type="hidden" name="distribution[id]" value="<?php print $distribution['id']; ?>"/></td>
-  	<td><input type="text" name="distribution[name]" value="<?php print $distribution['name']; ?>"/></td>
+  	<td><input class="name" type="text" name="distribution[name]" value="<?php print $distribution['name']; ?>"/></td>
     <?php foreach ($data['rooms'] as $room_id => $room) {?>
     <td><input type="text" name="distribution[rooms][<?php print $room_id; ?>]" value="<?php
     if (isset($distribution['rooms'][$room_id])){ 
@@ -44,7 +44,7 @@
   <form action="." method="POST">
   <tr class="new overbubble">
     <td>-</td>
-  	<td><input type="text" name="distribution[name]" value="<?php print t('basic distribution by area');?>"/></td>
+  	<td><input class="name" type="text" name="distribution[name]" value="<?php print t('basic distribution by area');?>"/></td>
     <?php if (isset($data['rooms'])) {
     	foreach ($data['rooms'] as $room_id => $room) { ?>
     <td><input type="text" name="distribution[rooms][<?php print $room_id; ?>]" value="<?php print $base_dist['rooms'][$room_id]; ?>"/></td>

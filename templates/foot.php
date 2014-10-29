@@ -12,6 +12,6 @@
   	}
 ?>
     <br/>
-    <div class="footline"><a href="https://github.com/SRSoftware/cashCommunity"><?php print t('This software is open source. Find the code at GitHub.')?></a> Version 1.0</div>
+    <div class="footline"><a href="https://github.com/SRSoftware/cashCommunity"><?php print t('This software is open source. Find the code at GitHub.')?></a> Version 1.1</div>
 </body>
 </html>
