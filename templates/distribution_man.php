@@ -40,7 +40,7 @@
   } // if
   ?>
   <form action="." method="POST">
-  <tr class="new">
+  <tr class="new overbubble">
     <td>-</td>
   	<td><input type="text" name="distribution[name]" value="<?php print t('basic distribution by area');?>"/></td>
     <?php if (isset($data['rooms'])) {
@@ -51,4 +51,15 @@
     <td><button type="submit" name="action" value="add distribution"><?php print t('save new'); ?></button></td>
   </tr>  
   </form>
+  
+  <tr>
+    <td></td>
+  	<td class="bubble"><?php print t('Enter a description in the green area to start creating a new distribution.');?></td>
+  	<?php if (isset($data['rooms']) && count($data['rooms'])>0) { ?>
+    <td colspan="<?php print count($data['rooms']); ?>" class="bubble"><?php print t('Assign a ratio or fraction of the flat size to each room. By entering "0", a invoice using this distribution will not be assigned to the inhabitants of this room. Fractions of uninhabitated rooms will be shared evenly across all flatmates. The values preset reflect the distribution by room size.'); ?></td>
+    <?php } // if?>
+    <td></td>
+  </tr>
+  
+  
 </table>
