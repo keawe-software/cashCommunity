@@ -4,6 +4,10 @@ table#dist_man input{
 	width: 100px;
 }
 
+table#dist_man input.name{
+  width: 260px;
+}
+
 .new{
   background-color: #bbffbb;
 }
