@@ -495,7 +495,6 @@
     $message=str_replace($keys,$values,$message);
     $subject=t('cashCommunity license');
     $address=$_POST['mail'];
-    print($message); return;
     if (mail($address,$subject,$message)){
       print t('We sent you an email. Please check your postbox!');
     } else {
