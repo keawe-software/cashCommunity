@@ -45,7 +45,7 @@ foreach ($data['rooms'] as $room){
   </tr>
   <tr class="collation">
     <td></td>
-    <td class="bubble"><?php print t('You can add a new room, by clicking into the green field above.'); ?></td>
+    <td class="bubble"><?php print t('You can add a new room by typing its name into the green field above.'); ?></td>
     <td class="bubble"><?php print t('Enter the numerical room size here.'); ?></td>
   </tr>
   </table>

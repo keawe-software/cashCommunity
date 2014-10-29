@@ -96,7 +96,7 @@
     <td class="bubble"><?php print t('To add a new invoice, start by entering a description in the green field above.'); ?></td>
     <td class="bubble"><?php print t('Enter the first day of the timespan the invoice is for here. Use the format yyyy-mm or yyyy-mm-dd.'); ?></td>
     <td class="bubble"><?php print t('Enter the last day of the timespan the invoice is for here. If you leave the start date blank, it will be adjusted to span the whole month.'); ?></td>
-    <td class="bubble"><?php print t('Chose whilch distribution shall be used to assign the invoice to your flat mates.'); ?></td>
+    <td class="bubble"><?php print t('Choose whilch distribution shall be used to assign the invoice to your flat mates.'); ?></td>
     <td class="bubble"><?php print t('Each invoice needs to have a numeric value. This can be positive or negative, but must not be zero!'); ?></td>
     <td></td>
   </tr>  
