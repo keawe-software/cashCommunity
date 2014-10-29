@@ -70,5 +70,19 @@ print str_replace('%name', $mate_name, t('Showing the payments of %name.'));
     	<?php
     }
   ?>
-
+  <tr class="overbubble">
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>    
+  </tr> 
+  
+  <tr>
+    <td></td>
+    <td class="bubble"><?php print t('Enter a description for new payment in the green area.');?></td>
+    <td class="bubble"><?php print t('Enter the date of the payment here. Use the format yyyy-mm-dd.');?></td>
+    <td class="bubble"><?php print t('Each payment should have a numeric value!')?></td>
+    <td></td>
+  </tr>  
 </table>
