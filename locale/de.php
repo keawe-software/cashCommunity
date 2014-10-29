@@ -10,6 +10,7 @@ $locale = array(
 		'Balance overview' => 'Kontoübersicht',
 		'basic distribution by area' => 'Basis-Verteilung nach Fläche',
 		'cashCommunity - Community management by SRSoftware' => 'cashCommunity - WG-Management von SRSoftware',
+		'cashCommunity is a web service allowing you to manage your living communitie\'s invoices and payments. All your data is password protected. We will neither use your data for any purpose other than helping you with calculations, nor will we forward yout data to any third parties.'=>'cashCommunity ist ein Webservice, welcher dir erlaubt die Rechnungen und Zahlungen deiner Wohngemeinschaft zu verwalten. Alle deine Daten werden passwortgeschützt gespeichert. Wir werden diese Daten zu nichts anderem verwenden, als dir bei deinen Rechnungen zu helfen. Wir werden deine Daten nicht an andere weitergeben.',
 		'Can not assign flat mates: no flat mates given.'=>'Kann keine Mitbewohner zuweisen: keine vorhanden!',
 		'Choose whilch distribution shall be used to assign the invoice to your flat mates.'=>'Wähle, welche Verteilung verwendet werden soll, um diese Rechnung auf deine Mitbewohner aufzuteilen.',
 		'Congratulations, you have been registered!'=>'Herzlichen Glückwunsch, du bist nun registriert!',
