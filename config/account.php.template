@@ -3,4 +3,5 @@
   $account['owner']="Company Name";
   $account['bic']="BIC";
   $account['iban']="IBAN";
+  $account['signature']='Stephan Richter, SRSoftware GbR';
 ?>

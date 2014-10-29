@@ -100,6 +100,10 @@ if (isset($_POST['action'])){
 		} else {
 			include 'templates/register.php';
 		}
+
+        } else if ($action=='send account mail'){
+		sendAccountMail();
+		include 'templates/overview.php';
 	} else if ($action=='show balance'){
 		readBalance($_POST['flatmate']);
 		include 'templates/balance_man.php';
