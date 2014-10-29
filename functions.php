@@ -491,7 +491,7 @@
     }
     $keys=array('%owner','%IBAN','%BIC','%signature','%user');
     $values=array($account['owner'],$account['iban'],$account['bic'],$account['signature'],$_SESSION['user']);
-    $message=t("Dear user\n\nThank you for your interest in cashCommunity. To reactivate your account, transfer 10€ to the following bank account\n\n%owner\nIBAN: %IBAN\nBIC: %BIC\nsubject: cashCommunity / %user\n\nWe will unlock you account as soon as we recieve your payment.\n\nThank you for your confidence,\n%signature");
+    $message=t("Dear user\n\nThank you for your interest in cashCommunity. To reactivate your account, transfer 10€ to the following bank account:\n\n%owner\nIBAN: %IBAN\nBIC: %BIC\nsubject: cashCommunity / %user\n\nWe will unlock you account as soon as we recieve your payment.\n\nThank you for your confidence,\n%signature");
     $message=str_replace($keys,$values,$message);
     $subject=t('cashCommunity license');
     $address=$_POST['mail'];

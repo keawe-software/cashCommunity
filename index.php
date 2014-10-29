@@ -101,7 +101,7 @@ if (isset($_POST['action'])){
 			include 'templates/register.php';
 		}
 
-        } else if ($action=='send account mail'){
+  } else if ($action=='send account mail'){
 		sendAccountMail();
 		include 'templates/overview.php';
 	} else if ($action=='show balance'){
