@@ -7,7 +7,9 @@
       ?>
     </ul>
     <?php } 
-  print str_replace('%days',$_SESSION['validity'],t('Your current license expires in %days days.'));
+    if (isset($_SESSION['validity'])){
+  		print str_replace('%days',$_SESSION['validity'],t('Your current <a href="license.php">license</a> expires in %days days.'));
+  	}
 ?>
     <br/>
     <div class="footline"><a href="https://github.com/SRSoftware/cashCommunity"><?php print t('This software is open source. Find the code at GitHub.')?></a> Version 1.0</div>
