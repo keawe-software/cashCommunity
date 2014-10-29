@@ -42,7 +42,11 @@ foreach ($data['rooms'] as $room){
     <td>-</td>
     <td><?php print t('overall flat size'); ?></td>
     <td><?php print $flat_size; ?></td>
-    <td rowspan="2" class="rbubble"><?php print t('Flat mates can be assigned to rooms here. Depending on their time in your community, they will be assigned to different percentages of your invoices.'); ?></td>    
+    <?php if (isset($data) && isset($data['rooms']) && count($data['rooms'])>0) { ?>
+    <td rowspan="2" class="rbubble"><?php print t('Flat mates can be assigned to rooms here. Depending on their time in your community, they will be assigned to different percentages of your invoices.'); ?></td>
+    <?php } else {?>
+    <td></td>
+    <?php } ?>    
   </tr>
   <tr class="collation">
     <td></td>
