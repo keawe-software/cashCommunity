@@ -37,10 +37,15 @@ foreach ($data['rooms'] as $room){
 		<td><button type="submit" name="action" value="add room"><?php print t('save new');?></button></td>
 	</tr>
 	</form>
-  <tr class="collation">
+  <tr class="collation overview">
     <td>-</td>
     <td><?php print t('overall flat size'); ?></td>
     <td><?php print $flat_size; ?></td>
-    <td></td>
+    <td rowspan="2" class="rbubble"><?php print t('Flat mates can be assigned to rooms here. Depending on their time in your community, they will be assigned to different percentages of your invoices.'); ?></td>    
   </tr>
-</table>
+  <tr class="collation">
+    <td></td>
+    <td class="bubble"><?php print t('You can add a new room, by clicking into the green field above.'); ?></td>
+    <td class="bubble"><?php print t('Enter the numerical room size here.'); ?></td>
+  </tr>
+  </table>
