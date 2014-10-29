@@ -100,4 +100,5 @@ $locale = array(
 		'You can not add a payment without value!'=>'Sie können keine Zahlungen ohne Betrag anlegen!',
 		'You must not add payments with zero value!'=> 'Sie können keine Zahlungen mit Betrag 0 anlegen!',
 		'Your account will be fully functional for %days days. After that time, you will need a license to continue editing your data.'=>'Dein Account wird 14 tage uneingeschränkt funktionieren. Danach wirst du eine Lizenz brauchen, um weiter deine Daten zu bearbeiten.',
-		'Your test period expired. You can still view your data, but any changes will be lost immediately. Please purchase a license to continue using all features'=>'Dein Test-Zeitraum ist abgelaufen. Du kannst deine Daten weiter einsehen, aber alle Änderungen werden sofort verworfen. Bitte erwirb eine Lizenz, um alle Funktionen weiter zu verwenden!');
+                'Your current license expires in %days days.'=>'Ihre derzeitige Lizenz l�uft in %days Tagen aus.',
+  		'Your test period expired. You can still view your data, but any changes will be lost immediately. Please purchase a license to continue using all features'=>'Dein Test-Zeitraum ist abgelaufen. Du kannst deine Daten weiter einsehen, aber alle Änderungen werden sofort verworfen. Bitte erwirb eine Lizenz, um alle Funktionen weiter zu verwenden!');

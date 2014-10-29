@@ -31,7 +31,8 @@
 			$stm->execute(array(':username'=>$_POST['username'],':password'=>$pass));			
 			$results=$stm->fetchAll();
 			if (count($results)==1){
-				if ($results[0]['validity']<today()){
+                                $_SESSION['validity']=$results[0]['validity']-today();
+				if ($_SESSION['validity']<0){
 					$warnings[]=t('Your test period expired. You can still view your data, but any changes will be lost immediately. Please purchase a license to continue using all features');
 					$_SESSION['expired']=1;
 				}
