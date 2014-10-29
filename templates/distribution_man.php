@@ -1,3 +1,4 @@
+<h2><?php print t('Distribution manager');?></h2>
 <table id="dist_man">
   <tr>
     <th><?php print t('Id'); ?></th>

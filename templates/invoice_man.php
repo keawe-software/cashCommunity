@@ -22,6 +22,7 @@
   	<?php  	
   }
 ?>
+<h2><?php print t('Invoice manager');?></h2>
 <table>
   <tr>
     <th><?php print t('Id'); ?></th>
