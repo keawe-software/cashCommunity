@@ -268,6 +268,9 @@
   	$till=$timespan['till'];
   	$slices=array();
   	$slices[$from]=array('from'=>$from,'till'=>$till,'rooms'=>array());
+  	if (!isset($data['associations']) || empty($data['associations'])){
+  		return $slices;
+  	}
   	foreach ($data['associations'] as $association){
   		$from=$association['from'];
   		$till=$association['till'];
