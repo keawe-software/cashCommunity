@@ -74,6 +74,6 @@
     <td class="bubble"><?php print t('Enter the first day of your flat mate living in your flat. Please use the format yyyy-mm or yyyy-mm-dd.')?></td>
     <td class="bubble"><?php print t('Enter the last day of your flat mate living in your flat. Leave this field empty, if your flatmate still lives with you.')?></td>
     <td class="bubble"><?php print t('Select a flat mate here.')?></td>
-    <td></button>
+    <td></td>
   </tr>    
 </table>
