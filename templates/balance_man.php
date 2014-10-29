@@ -112,4 +112,3 @@ print str_replace('%name',$mate_name,t('showing the balances of %name.'));
 		<td><?php print abs($total);?></td>
 	</tr>	
 </table>
-<br/>
