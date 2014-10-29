@@ -10,6 +10,7 @@ $locale = array(
 		'Balance overview' => 'Kontoübersicht',
 		'basic distribution by area' => 'Basis-Verteilung nach Fläche',
 		'cashCommunity - Community management by SRSoftware' => 'cashCommunity - WG-Management von SRSoftware',
+		'Can not assign flat mates: no flat mates given.'=>'Kann keine Mitbewohner zuweisen: keine vorhanden!',
 		'Choose whilch distribution shall be used to assign the invoice to your flat mates.'=>'Wähle, welche Verteilung verwendet werden soll, um diese Rechnung auf deine Mitbewohner aufzuteilen.',
 		'Date' => 'Datum',		
 		'Debit' => 'Schulden',
