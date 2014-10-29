@@ -41,7 +41,11 @@ if (isset($data)){
 	<tr>
 	  <td></td>
 	  <td class="bubble"><?php print t('To add a new flat mate, enter his/her name in the green field. Then click "save new".')?></td>
+	  <?php if (isset($data) && isset($data['flatmates']) && count($data['flatmates']>0)) { ?>
 	  <td class="rbubble"><?php print t('Press the payments button to manage the list of bills a flatmate has paid. The balance button leads to a overview of bills and payments the flatmate accounts for.')?></td>
+	  <?php } else { ?>
+	  <td></td>
+	  <?php } ?>
 	</tr>
 	</form>
 </table>
