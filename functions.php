@@ -92,6 +92,9 @@
   
   function addDistribution($dist){
   	global $data;
+  	if (!isset($data['distributions'])){
+  		$data['distributions']=array();
+  	}
   	$dist['id']=count($data['distributions']);
   	editDistribution($dist);
   }
