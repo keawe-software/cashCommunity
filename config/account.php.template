@@ -1,0 +1,6 @@
+<?php
+  $account=array();
+  $account['owner']="Company Name";
+  $account['bic']="BIC";
+  $account['iban']="IBAN";
+?>
