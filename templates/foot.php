@@ -7,7 +7,7 @@
       ?>
     </ul>
     <?php } ?>
-  <br/>
+  <br/>  
   <div class="footline"><a href="https://github.com/SRSoftware/cashCommunity"><?php print t('This software is open source. Find the code at GitHub.')?></a></div>
 </body>
 </html>

@@ -5,3 +5,4 @@
 <?php print t('Not registered, yet? Get a login!'); ?>
   <button type="submit" name="action" value="register"><?php print t('register now'); ?></button>
 </form>
+<?php print t('cashCommunity is a web service allowing you to manage your living communitie\'s invoices and payments. All your data is password protected. We will neither use your data for any purpose other than helping you with calculations, nor will we forward yout data to any third parties.')?>
