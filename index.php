@@ -63,7 +63,12 @@ if (isset($_POST['action'])){
 		include 'templates/room_man.php';
 						
 	} else if ($action=='manage associations'){
-		include 'templates/association_man.php';
+		if (!isset($data['flatmates']) || emtpy($data['flatmates'])){
+			$warnings[]=t('Can not assign flat mates: no flat mates given.');
+			include 'templates/flatmate_man.php';
+		} else {
+			include 'templates/association_man.php';
+		}
 
 	} else if ($action=='manage distributions'){
 		calculate();
