@@ -4,3 +4,4 @@
   <?php print t('repeat password');?>:<input type="password" name="newuser[password2]"/><br/>
   <button type="submit" name="action" value="register"><?php print t('register now'); ?></button>
 </form>
+<div class="rbubble"><?php print t('Please be responsible and use a very secure password. This password is everything that keeps intruders away from your and your flatmates\' data.'); ?></div>

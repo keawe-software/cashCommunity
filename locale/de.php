@@ -65,6 +65,7 @@ $locale = array(
 		'payments' => 'Zahlungen',
 		'Payment manager' => 'Zahlungsverwaltung',
 		'please add a distribution first!'=>'Bitte erst Verteilung anlegen!',
+		'Please be responsible and use a very secure password. This password is everything that keeps intruders away from your and your flatmates\' data.'=>'Bitte sei verantwortungsvoll und wähle ein sehr sicheres Passwort. Dieses Passwort ist alles, was Eindringlinge von deinen Daten und den Daten deiner Mitbewohner fernhält!',
 		'Press the payments button to manage the list of bills a flatmate has paid. The balance button leads to a overview of bills and payments the flatmate accounts for.'=>'Klicken den Zahlungen-Knopf um die Liste der vom Mitbewohner bezahlten Rechnungen zu bearbeiten. Der Konto-Knopf zeigt dir die Kontoübersicht mit den Zahlungen und Rechnungen des Mitbewohners.',
 		'Proportional value' => 'anteiliger Betrag',		
 		'register now'=>'jetzt registrieren',
