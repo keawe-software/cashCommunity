@@ -1,6 +1,6 @@
 <form action="." method="post">
 
-<table class="overview">  
+<table class="overview overbubble">  
   <tr>
 		<td><button type="submit" name="action" value="manage rooms"><?php print t('manage rooms'); ?></button></td>  	
   	<td><button type="submit" name="action" value="manage flatmates"><?php print t('manage flatmates'); ?></button></td>

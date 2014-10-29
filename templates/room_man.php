@@ -37,7 +37,7 @@ foreach ($data['rooms'] as $room){
 		<td><button type="submit" name="action" value="add room"><?php print t('save new');?></button></td>
 	</tr>
 	</form>
-  <tr class="collation overview">
+  <tr class="collation overbubble">
     <td>-</td>
     <td><?php print t('overall flat size'); ?></td>
     <td><?php print $flat_size; ?></td>

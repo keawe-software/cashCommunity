@@ -61,12 +61,19 @@
   ?>
   <form action="." method="POST">
   <input type="hidden" name="association[room]" value="<?php print $room['id']; ?>"/>
-  <tr class="new">
+  <tr class="new overbubble">
     <td>-</td>
     <td><input type="text" name="association[from]" value="<?php print daysToDate(1+$assoc['till']); ?>"/></td>
     <td><input type="text" name="association[till]"/></td>
     <td><?php flatmateSelector(); ?></td>
     <td><button type="submit" name="action" value="add association"><?php print t('save new');?></button>
   </tr>
-  </form>  
+  </form>
+  <tr>
+    <td></td>
+    <td class="bubble"><?php print t('Enter the first day of your flat mate living in your flat. Please use the format yyyy-mm or yyyy-mm-dd.')?></td>
+    <td class="bubble"><?php print t('Enter the last day of your flat mate living in your flat. Leave this field empty, if your flatmate still lives with you.')?></td>
+    <td class="bubble"><?php print t('Select a flat mate here.')?></td>
+    <td></button>
+  </tr>    
 </table>
