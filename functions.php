@@ -264,7 +264,7 @@
   /* get time slices with room-to-flatmate associations in a timespan */
   function getAssociationsFor($timespan){
   	global $data;
-  	$from=$timespan['from'];
+  	$from=$timespan['from']; // timespan is the timespan of the invoice
   	$till=$timespan['till'];
   	$slices=array();
   	$slices[$from]=array('from'=>$from,'till'=>$till,'rooms'=>array());
@@ -274,8 +274,8 @@
   	foreach ($data['associations'] as $association){
   		$from=$association['from'];
   		$till=$association['till'];
-  		if ($till==0){
-  			$till=today();
+  		if ($till==0){ // if a flatmate still lives in the flat:
+  			$till=today()+365; // include payments for the next 31 days
   		}
   		$room=$association['room'];
   		$mate=$association['flatmate'];
@@ -376,8 +376,8 @@
   function readBalance($flatmate){
   	global $data, $balance;
   	$balances=array();
-  	foreach ($data['invoices'] as $invoice){
-  		distributeInvoice($invoice,$balances);
+  	foreach ($data['invoices'] as $invoice){ // loop through all invoices
+  		distributeInvoice($invoice,$balances); // determine part of invoice to be payed by flatmate
   	}
   	if (isset($flatmate['id']) && isset($balances[$flatmate['id']])){
   		$balance=$balances[$flatmate['id']];

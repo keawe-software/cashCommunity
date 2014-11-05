@@ -93,7 +93,7 @@ print str_replace('%name',$mate_name,t('showing the balances of %name.'));
     <td></td>
 		<td></td>
 	</tr>	
-	<?php $total=$payment_sum-$invoice_sum; 
+	<?php $total=round($payment_sum-$invoice_sum,2); 
 	  if ($total>0) { ?>
 		<tr class="deposit">
 		<?php } else {?>
