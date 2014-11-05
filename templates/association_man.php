@@ -49,7 +49,7 @@
   <?php } ?>    
     <td><?php print $assoc['id']; ?></td>
 	  <td><input type="text" name="association[from]" value="<?php print daysToDate($assoc['from']); ?>"/></td>
-    <td><input type="text" name="association[till]" value="<?php print daysToDate($assoc['till']); ?>"/></td>
+    <td><input type="text" name="association[till]" value="<?php if ($assoc['till']>0) { print daysToDate($assoc['till']); } ?>"/></td>
     <td><?php flatmateSelector($assoc['flatmate']); ?></td>
     <td><button type="submit" name="action" value="edit association"><?php print t('save');?></button>
   </tr>
