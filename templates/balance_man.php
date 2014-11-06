@@ -12,7 +12,7 @@ print str_replace('%name',$mate_name,t('showing the balances of %name.'));
 <table>
   <tr>
     <th><?php print t('ID');?></th>
-    <th><?php print t('Date')?></th>
+    <th colspan=2><?php print t('Period')?></th>
     <th><?php print t('Description');?></th>
     <th><?php print t('Value');?></th>
     <th><?php print t('Allotment');?></th>
@@ -32,8 +32,9 @@ print str_replace('%name',$mate_name,t('showing the balances of %name.'));
     <tr class="odd">
     <?php } ?> 
 			<td><?php print $invoice_id;?></td>
-			<td><?php print $invoice['date'];?></td>
-		  <td><?php print $invoice['description'];?></td>
+			<td><?php print $invoice['from'];?>.</td>
+			<td>..<?php print $invoice['till'];?></td>
+			<td><?php print $invoice['description'];?></td>
 		  <td><?php print $invoice['value'];?></td>
 		  <td><?php print $invoice['part'];?></td>
 			<td><?php print $value; ?></td>
@@ -44,6 +45,7 @@ print str_replace('%name',$mate_name,t('showing the balances of %name.'));
 	<tr class="sum">
     <td>-</td>
     <td>-</td>
+    <td>-</td>
     <td><?php print t('Sum of all invoices');?></td>
     <td>-</td>
     <td>-</td>
@@ -51,6 +53,7 @@ print str_replace('%name',$mate_name,t('showing the balances of %name.'));
 	</tr>
 	<tr>
     <td>&nbsp;</td>
+    <td></td>
     <td></td>
     <td></td>
     <td></td>
@@ -69,7 +72,7 @@ print str_replace('%name',$mate_name,t('showing the balances of %name.'));
     <tr class="odd">
     <?php } ?> 
 			<td><?php print $payment_id;?></td>
-			<td><?php print daysToDate($payment['date']);?></td>			
+			<td class="center" colspan=2><?php print daysToDate($payment['date']);?></td>
 		  <td><?php print $payment['description'];?></td>
 		  <td><?php print $payment['value'];?></td>
 		  <td>100.00%</td>
@@ -81,6 +84,7 @@ print str_replace('%name',$mate_name,t('showing the balances of %name.'));
 	<tr class="sum">
     <td>-</td>
 	  <td>-</td>
+	  <td>-</td>
 	  <td><?php print t('Sum of all payments');?></td>
     <td>-</td>
     <td>-</td>
@@ -88,6 +92,7 @@ print str_replace('%name',$mate_name,t('showing the balances of %name.'));
 	</tr>
 		<tr>
     <td>&nbsp;</td>
+    <td>-</td>	  
     <td></td>
     <td></td>
     <td></td>
@@ -100,6 +105,7 @@ print str_replace('%name',$mate_name,t('showing the balances of %name.'));
 		<tr class="debit">
 		<?php } ?>
     <td>-</td>
+    <td>-</td>	  
 		<td>-</td>
     <td><?php 
     					if ($total>0) {
