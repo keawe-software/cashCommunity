@@ -349,7 +349,7 @@
   		if (!isset($balances[$mate])){
   			$balances[$mate]=array();
   		}
-  		$balances[$mate][$invoice_id]=array('value'=>$invoice['value'],'description'=>$invoice['description'],'part'=>$part,'date'=>daysToDate($invoice['from']));
+  		$balances[$mate][$invoice_id]=array('value'=>$invoice['value'],'description'=>$invoice['description'],'part'=>$part,'from'=>daysToDate($invoice['from']),'till'=>daysToDate($invoice['till']));
   	}
   }
   

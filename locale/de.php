@@ -57,6 +57,7 @@ $locale = array(
 		'overall flat size'=>'Gesamtgröße der Wohnung',
 		'payments' => 'Zahlungen',
 		'Payment manager' => 'Zahlungsverwaltung',
+		'Period' => 'Zeitraum',
 		'please add a distribution first!'=>'Bitte erst Verteilung anlegen!',
 		'Press the payments button to manage the list of bills a flatmate has paid. The balance button leads to a overview of bills and payments the flatmate accounts for.'=>'Klicken den Zahlungen-Knopf um die Liste der vom Mitbewohner bezahlten Rechnungen zu bearbeiten. Der Konto-Knopf zeigt dir die Kontoübersicht mit den Zahlungen und Rechnungen des Mitbewohners.',
 		'Proportional value' => 'anteiliger Betrag',		
