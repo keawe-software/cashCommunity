@@ -7,4 +7,4 @@ cashCommunity ist eine in PHP geschriebene Software für die WG-Finanzverwaltung
 
 Dieses Programm-Projekt wurde von Stephan Richter gestartet, um die undurchsichtigen WG-Finanzverhältnisse seiner WG transparenter zu entwirren.
 
-Das Programm kann unter https://cc.srsoftware.de benutzt werden. Es kann 14 Tage lang kostenlos in vollem Umfang getestet werden. Danach werden für die weitere Nutzung 10€ pro Jahr fällig.
+Das Programm kann unter https://cc.keawe.de benutzt werden. Es kann 14 Tage lang kostenlos in vollem Umfang getestet werden. Danach werden für die weitere Nutzung 10€ pro Jahr fällig.
