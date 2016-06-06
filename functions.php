@@ -171,7 +171,7 @@
   	editInvoice($invoice);
   }
   
-  /* convert a date to a day-timestamp */
+  /* convert a date to a day-timestamp, i.e. days since 1970 */
   function dateToDay($date){
   	global $secondsperday;
   	return round(strtotime($date)/$secondsperday);
@@ -341,8 +341,8 @@
   		}
   		foreach ($rooms as $room_id => $mate){ // evenly split allotment of unoccupied rooms
   			$invoice_bal[$mate]=$invoice_bal[$mate]+$unpaid/$members;
+  			}  				
   		}
-  	}
   	foreach ($invoice_bal as $mate => $part){
   		if ($part==0) continue;
   		if ($part<0) die('For some reason, a flatmate has a negative part on an invoice. This should not be the case.');
@@ -359,7 +359,7 @@
   	foreach ($data['invoices'] as $invoice){ // loop through all invoices
   		distributeInvoice($invoice,$balances); // determine part of invoice to be payed by flatmate
   	}
-  	if (isset($flatmate['id']) && isset($balances[$flatmate['id']])){
+  	if (isset($flatmate['id']) && isset($balances[$flatmate['id']])){  		
   		$balance=$balances[$flatmate['id']];
   	} else {
   		$balance=array();
