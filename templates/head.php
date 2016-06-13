@@ -8,10 +8,10 @@
 			} else if (isset($_POST['action'])) {?>
 			<title><?php print t($_POST['action']);?></title><?php
 			} else {?>
-			<title><?php print t('cashCommunity - Community management by Keawe');?></title><?php
+			<title><?php print t('cashCommunity - Community management by keawe.de');?></title><?php
 			}
     ?>
   </head>
   <body>
-    <h1><?php print t('cashCommunity - Community management by Keawe');?></h1>
+    <h1><?php print t('cashCommunity - Community management by keawe.de');?></h1>
   
